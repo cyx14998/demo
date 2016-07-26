@@ -7,22 +7,23 @@
 </head>
 <body>
 <script type="text/javascript">
-    function backFunction(callback){
-        var a = 1;
-        var b = 2;
-        callback.call(this,a);
-    }
     backFunction(function(x){
-        console.log(x);
+        console.log(x.a+x.b);
     });
     var arr1 = [1,2,3];
     var arr2 = [4,5,6];
-    arr1.push.apply(arr2);
+    //arr1.push.apply(arr2);
     Array.prototype.push.apply(arr1,arr2);
     Array.prototype.push.apply(arr2,arr1);//组合成一个数组，可以理解成Array.prototype.push.call(arr2,arr1[0],arr[1],...)
     //Array.prototype.push.call(arr2,1,2,3,4);
     console.log(arr1);
     console.log(arr2);
+    function backFunction(callback){
+        var arr={};
+        arr.a = 1;
+        arr.b = 2;
+        callback.call(this,arr);
+    }
 </script>
 </body>
 </html>
