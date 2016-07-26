@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <script src="js/jquery-1.9.1.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var a1 = new Animator(1414,  function(p){
+        var ty = 200 * p * p;
+        block.style.transform = 'translateY(' 
+            + ty + 'px)';     
+        });
+
+        var a2 = new Animator(1414,  function(p){
+        var ty = 200 - 200 * p * (2-p);
+        block.style.transform = 'translateY(' 
+            + ty + 'px)';     
+        });
+
+        block.addEventListener('click', function(){
+        var animators = new AnimationQueue();
+        animators.append(a1,a2, function(){
+            this.append(a1, a2, arguments.callee);
+        });
+        animators.flush();
+        });
+    </script>
+</body>
+
+</html>

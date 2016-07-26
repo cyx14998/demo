@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <p v-if="hello">{{message}}</p>
+        <ul>
+            <li v-for="todo in todos">
+                {{todo.Back}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+$.ajax({
+    url: 'http://dj.t.ly.com/dujia/AjaxHelper/DynamicPackageAjax.ashx?Type=DYNAMICPACKAGEINFO&param={"LineId":"319084","IsDefault":1,"LineDate":"2016-04-19","Adult":2,"Child":0,"Flight":null,"Hotels":[{"HotelId":12317,"RoomId":108596,"RoomCount":0,"DestId":3172,"StartDate":"2016-04-19","EndDate":"2016-04-21","Nights":2,"IsDirect":0,"Index":0},{"HotelId":12317,"RoomId":108596,"RoomCount":0,"DestId":3172,"StartDate":"2016-04-21","EndDate":"2016-04-23","Nights":2,"IsDirect":0,"Index":1}],"Insurance":{"AccidentCode":"","CancleCode":""}}',
+    dataType: 'jsonp',
+    success: function(cfg){
+
+        var datahehe = new Vue({
+            el: '#app',
+            data: {
+                todos: cfg.data.Hotels
+            }
+        })
+        console.log(cfg);
+    }
+})
+</script>
+</html>

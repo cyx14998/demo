@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DataPicker</title>
+	<link rel="stylesheet" href="../css/bootstrap-datepicker3.min.css">
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/bootstrap-datepicker.min.js"></script>
+	<script src="../js/bootstrap-datepicker.zh-CN.js"></script>
+</head>
+<body>
+<div class="panel panel-default col-md-8 col-md-offset-2">
+	<div class="panel-heading text-center">
+		<h2>DatePicker</h2>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-3">
+				<div class="input-daterange input-group" id="datepicker">
+				    <input type="text" class="input-sm form-control" name="start" />
+				    <span class="input-group-addon">to</span>
+				    <input type="text" class="input-sm form-control" name="end" />
+				</div>
+			</div>
+			<div class="col-md-9">
+				<pre>
+						html:
+						&lt;div class="input-daterange input-group" id="datepicker"&gt;
+						    &lt;input type="text" class="input-sm form-control" name="start" /&gt;
+						    &lt;span class="input-group-addon">to</span>
+						    &lt;input type="text" class="input-sm form-control" name="end" /&gt;
+						&lt;/div&gt;
+						js:
+						$('.input-daterange').datepicker({
+							format: "yyyy-mm-dd",
+							weekStart: 8,
+							orientation: "bottom left"
+						});
+				</pre>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<input type="text" id="dp_2" class="form-control">
+			</div>
+			<div class="col-md-9">
+				<pre>
+					html:
+						&lt;input type="text" id="dp_2" class="form-control"&gt;
+					js:
+						$('.dp_2').datepicker({
+							format: "yyyy-mm-dd",
+							weekStart: 8,
+							multidate: true,
+							orientation: "bottom left"
+						});
+				</pre>
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+<script>
+	$(function(){
+		$('.input-daterange').datepicker({
+			format: "yyyy-mm-dd",
+			weekStart: 8,
+			orientation: "bottom left"
+		});
+		$('#dp_2').datepicker({
+			format: "yyyy-mm-dd",
+			weekStart: 8,
+			multidate: true,
+			orientation: "bottom left"
+		});
+	});
+</script>
+</body>
+</html>

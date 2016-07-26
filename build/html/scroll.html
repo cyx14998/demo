@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .test {
+        margin: 200px auto;
+        width: 300px;
+        height: 200px;
+        overflow: auto;
+    }
+</style>
+<body>
+    <div id="test" class="test">
+        <img src="images/9.jpg">
+    </div>
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script>
+        $.fn.scrollUnique = function() {
+            return $(this).each(function() {
+                var eventType = 'mousewheel';
+                if (document.mozHidden !== undefined) {
+                    eventType = 'DOMMouseScroll';
+                }
+                $(this).on(eventType, function(event) {
+                    // 一些数据
+                    var scrollTop = this.scrollTop,
+                        scrollHeight = this.scrollHeight,
+                        height = this.clientHeight;
+
+                    var delta = (event.originalEvent.wheelDelta) ? event.originalEvent.wheelDelta : -(event.originalEvent.detail || 0);
+
+                    if ((delta > 0 && scrollTop <= delta) || (delta < 0 && scrollHeight - height - scrollTop <= -1 * delta)) {
+                        // IE浏览器下滚动会跨越边界直接影响父级滚动，因此，临界时候手动边界滚动定位
+                        this.scrollTop = delta > 0? 0: scrollHeight;
+                        // 向上滚 || 向下滚
+                        event.preventDefault();
+                    }
+                });
+            });
+        };
+        $('#test').scrollUnique();
+
+        /*
+        box.style.textAlign = "justify";
+        box.style.letterSpacing = '-.15em';
+        box.innerHTML = box.innerHTML.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '').split("").join(" ").replace(/\s{3}/g, " &nbsp; ");
+        */
+    </script>
+</body>
+</html>

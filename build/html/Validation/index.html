@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Validation</title>
+	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="../js/bootstrap.js"></script>
+	<script src="../js/jquery.Validate.min.js"></script>
+	<!--<script src="../js/validation.js"></script> --> <!--这里可以链接外部messages-->  
+</head>
+<body>
+	<div class="panel panel-default col-md-8 col-md-offset-2">
+		<div class="panel-heading text-center">
+			<h2>Validation</h2>
+		</div>
+		<form  method="post" class="form form-horizontal FormValidate">
+			<div class="panel-body col-md-8 col-md-offset-2">
+				<div class="row">
+					<label class="control-label col-xs-3 text-center">不为空</label>
+					<div class="col-xs-5">
+						<input class="form-control " name="notnull"></input>   		<!-- 如果要外部链接则加上规则required -->
+					</div>
+					<div class="col-xs-4 help-inline validator"></div>
+				</div>
+				<br />
+				<div class="row">
+					<label class="control-label col-xs-3 text-center">email</label>
+					<div class="col-xs-5">
+						<input class="form-control required" name="email"></input> 	<!-- 如果要外部链接则加上规则required email="true" -->
+					</div>
+					<div class="col-xs-4 help-inline validator"></div>
+				</div>
+				<br />
+				<div class="row">
+					<label class="control-label col-xs-3 text-center">phone</label>
+					<div class="col-xs-5">
+						<input class="form-control" name="phone"></input>  			<!-- 如果要外部链接则加上规则maxlength="11" minlength="8" -->
+					</div>
+					<div class="col-xs-4 help-inline J_ValidateMsg"></div>
+				</div>
+				<br />
+				<div class="row">
+					<label class="control-label col-xs-3 text-center">最多输入</label>
+					<div class="col-xs-5">
+						<input class="form-control" name="maxlength"></input>		<!-- 如果要外部链接则加上规则maxlength="20" -->
+					</div>
+					<div class="col-xs-4 help-inline J_ValidateMsg"></div>
+				</div>
+				<br />
+				<div class="row">
+					<label class="control-label col-xs-3 text-center">范围</label>	
+					<div class="col-xs-5">
+						<input class="form-control" name="range"></input>			<!-- 如果要外部链接则加上规则range="true" -->
+					</div>
+					<div class="col-xs-4 help-inline J_ValidateMsg"></div>
+				</div>
+				<br />
+				<div class="row">
+					<div class="col-xs-offset-3 col-xs-5">
+						<button class="btn btn-success">提交</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script>
+		$(function(){
+			$(".form").validate({
+				rules:{
+					notnull:{
+						required:true
+					},
+					email:{
+						required:true,
+						email:true
+					},
+					phone:{
+						minlength:8,
+						maxlength:11
+					},
+					maxlength:{
+						maxlength:20
+					},
+					range:{
+						range:[0,1]
+					}
+				},
+				messages:{
+					notnull:{
+						required:"不能为空"
+					},
+					email:{
+						required:"不能为空",
+						email:"请输入正确的邮箱格式"
+					},
+					phone:{
+						minlength:"最少输入8个数字",
+						maxlength:"不能超过11个数字"
+					},
+					maxlength:{
+						maxlength:"最多不能超过20个数字"
+					},
+					range:{
+						range:"请输入0到1之间的数字"
+					}
+				}
+			});
+		})
+	</script>
+</body>
+</html>

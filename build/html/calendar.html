@@ -1,0 +1,125 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> jquery  calendar demo</title>
+<link rel="stylesheet" type="text/css" href="http://js.40017.cn/cn/min/??/cn/public/jquery/calendar/0.0.1/calendar.css?v=20160216">
+
+
+<script type="text/javascript" src="http://js.40017.cn/cn/public/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="http://js.40017.cn/cn/min/??/cn/public/jquery/calendar/0.0.1/calendar.js?v=20160216"></script>
+
+
+<style type="text/css">
+*{ margin: 0; padding: 0;}
+em { font-style: normal;}
+.box { padding: 100px 0 0 100px;}
+.txt { width: 200px; height: 26px; line-height: 26px; border: 1px solid #ccc; padding-left: 3px; border-radius: 3px; box-shadow: .5px 1px 1px #eaeaea inset; outline: none;}
+.txt:focus { border: 1px solid #8297b0;}
+
+#wrap { width: 300px; height: 300px; border: 1px solid red; line-height: 300px; font-size: 20px; text-align: center; position: absolute; top: 20px; left: 500px;}
+
+#abc .calendar-wrapper td .d { height: 33px; line-height: 26px;}
+#abc .calendar-wrapper td.price .d { line-height: 16px;}
+#abc .calendar-wrapper .from-day .d, #abc .calendar-wrapper .to-day .d, #abc .calendar-wrapper .selected-day .d, #abc .calendar-wrapper .hover-from-day .d, #abc .calendar-wrapper .hover-to-day .d { height: 30px;}
+#abc .calendar-wrapper .from-day{
+    width: 29px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="box">
+    <p>普通日历</p>
+    <br>
+    <input type="text" class="txt" id="ipt2" value="">
+
+    <br><br><br><br>
+</div>
+
+<div id="wrap">点击此区域日历面板不会关闭</div>
+
+<script type="text/javascript">
+
+    var cal = new $.Calendar({
+        open: true,
+        id: "abc",
+        skin: "white",
+        wrapperWidth: 310,
+        zIndex: 22,
+        monthNum: 1
+    });
+
+    $("#ipt2").focus(function() {
+        cal.pick({
+            elem: $("#ipt2"), // 如果设置了elem的值，且elem参数为input框
+            // startDate: new Date(),
+            // mode: "rangeFrom",
+            // endDate: endDate,
+            elems: $("#wrap"),
+            isBigRange: true,
+            // offset: {left: 10, top: 20},
+            /*// currentDate: [new Date()],
+            fn: function(y, d, r) {
+                alert(1)
+            }*/
+
+        });
+    });
+
+
+   /* $("#ipt").click(function() {
+        cal.pick({
+            elem: $("#ipt"), // 如果设置了elem的值，且elem参数为input框
+            startDate: new Date(),
+            mode: "rangeFrom",
+            // endDate: endDate,
+            elems: $("#wrap"),
+            // offset: {left: 10, top: 20},
+            currentDate: [new Date()],
+            ajaxObj: {
+                url: "data.js?year={year}&month={month}&v="+Math.random(),
+                dataType: "json",
+                success: function(data){
+                    if (data && data.length) {
+                        var obj = {};
+                        for (var i = 0, len = data.length; i < len; i++) {
+                            var item = data[i];
+                            date = item.date;
+                            obj[date] = item;
+                        }
+                        return obj;
+                    }
+                }
+            },
+            buildContent: function(td, date, dateStr, data) {
+                var day = date.getDate(),
+                    str = dateStr || day,
+                    y = date.getFullYear(),
+                    m = date.getMonth()+1,
+                    d = date.getDate(),
+                    _date = "",
+                    _class = "";
+                m = m < 10 ? "0" + m : m;
+                d = d < 10 ? "0" + d : d;
+                _date = y + "-" + m + "-" + d;
+                str = '<span class="d">'+str+'</span>';
+                if (data && data[_date]) {
+                    _class = "price";
+                    str = '<span class="d" style="line-height: 16px;">'+day+'<br><em style="color:#f60;">¥'+data[_date].Price+'</em></span>';
+                }
+                td.innerHTML = str;
+                $(td).addClass(_class);
+            },
+            fn: function(y, m, d, td, ipt) {
+                alert(y+"-"+m+"-"+d+" "+($("em", td).html() || ""))
+            }
+
+        });
+    });*/
+
+
+</script>
+
+
+
+</body></html>

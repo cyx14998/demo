@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>location</title>
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="http://js.40017.cn/touch/public/location/0.0.3/location.js"></script>
+	<script src="../js/index.js"></script>
+</head>
+<body>
+<script>
+
+	$.location({
+       noAddress:true,
+       fn:function (location) {
+           alert(JSON.stringify(location));
+    console.log(location);
+       }
+	});
+</script>
+</body>
+</html>

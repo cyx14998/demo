@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CallAndApply</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<div id="div" style="width: 200px; height: 200px;background: #ccc;"></div>
+    <script type="text/javascript">
+        -function(){
+            alert('cyx');
+        }();
+        function Animal(name) {
+            this.name = name;
+            this.showName = function() {
+                console.log(this.name);
+            };
+        }
+
+        function Cat() {
+            Animal.call(this, "Black Cat");//call必须是object
+        }
+        Cat.prototype = new Animal();
+
+        function Dog() {
+            Animal.apply(this, ["Black Dog"]);//apply必须是array类型
+            //Animal(name); //这样是不能输出Animal里面的showName函数
+        }
+        Dog.prototype = new Animal();
+
+        var cat = new Cat();
+
+        var dog = new Dog();
+
+        cat.showName();
+        dog.showName();
+
+        console.log(cat instanceof Animal); //cat是否是Animal的实例
+        console.log(dog instanceof Animal);
+        console.log(typeof cat === typeof dog);
+
+
+        function Person(name,age){   //定义一个类，人类
+            this.name=name;     //名字
+            this.age=age;       //年龄
+            this.sayhello=function(){
+                console.log('hello! '+name+'.You are '+ age +' now!')
+            };
+        }
+        function Print(){            //显示类的属性
+            this.funcName="Print";
+            this.show=function(){
+                var msg=[];
+                for(var key in this){
+                    if(typeof(this[key])!="function"){
+                        msg.push([key,":",this[key]].join(""));
+                    }
+                }
+                console.log(msg.join(" "));
+            };
+        }
+        function Student(name,age,grade,school){    //学生类
+            Person.apply(this,arguments);
+            Print.apply(this,arguments);
+            this.grade=grade;                //年级
+            this.school=school;                 //学校
+            this.sex = "男";
+        }
+        var p1=new Person("jake",10);
+        p1.sayhello();
+        var s1=new Student("tom",13,6,"清华小学");
+        s1.show();
+        s1.sayhello();
+        var jsonData = {
+            id: 42,
+            status: "OK",
+            data: [867, 5309]
+        };
+
+        let { id, status, data: number } = jsonData;
+
+        console.log(id, status, number);
+        console.log(jsonData.data);
+        //alert(s1.funcName);
+    </script>
+</body>
+</html>
