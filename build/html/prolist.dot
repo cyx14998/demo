@@ -2,23 +2,29 @@
     <ul class="clearfix">
         {{~it:pro:index}}
             {{
-                var LineType =""; if(pro.LineType==0){LineType ="跟团游"}else{ LineType ="自由行"}
-                var url="http://www.ly.com/dujia/tours/" +pro.LineId+(pro.LineType==0? ".html": "/")+ "?ak="+pro.RedirectKey+ "&SellType="+pro.SellType;
+                var LineType ="";
+                if(pro.Property==1)
+                    {LineType ="跟团游"}
+                else if(pro.Property == 3)
+                    { LineType ="自由行"}
+                else if(pro.Property == 10)
+                    {LineType = "目的地参团"}
+                var linkUrl="http://www.ly.com/dujia/tours/" +pro.Id+(pro.LineType==1? ".html": "/")+ "?ak="+pro.RedirectKey+ "&SellType="+pro.SellType;
             }}
             {{?index<6}}
             <li class="product">
-                <a class="proline__link" trace="{{=index}}" target="_blank" href="{{=url}}">
+                <a class="proline__link" trace="{{=index}}" target="_blank" href="{{=linkUrl}}">
                     <div class="proline__img">
-                        <img data-img="{{=pro.ImgUrl}}" title="{{=pro.MainTitle}}" alt="{{=pro.MainTitle}}">
+                        <img data-img="{{=pro.ImageUrl}}" title="{{=pro.Title}}" alt="{{=pro.Title}}">
                     </div>
                     <div class="proline__txt">
-                        <p class="proline__title" title="{{=pro.MainTitle}}">{{=pro.MainTitle}}</p>
+                        <p class="proline__title" title="{{=pro.Title}}">{{=pro.Title}}</p>
                         <p class="proline__subTitle" title="{{=pro.SubTitle}}">{{=pro.SubTitle}}</p>
                         <p class="proline__price">
-                            <span>¥<em>{{=pro.Preferential}}</em><b> 起</b></span>
+                            <span>¥<em>{{=pro.PreferentialPrice}}</em><b> 起</b></span>
                         </p>
                     </div>
-                    <span class="startCity">{{=pro.DepartCity}}丨{{=LineType}}</span>
+                    <span class="startCity">{{=pro.PortCity}}丨{{=LineType}}</span>
                 </a>
             </li>
             {{?}}
