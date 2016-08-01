@@ -1,33 +1,88 @@
-<div class="proList {{="J_proList" + it.key}}" trace='{{=it.key}}'>
-    <ul class="clearfix">
-        {{~it:pro:index}}
-            {{
-                var LineType ="";
-                if(pro.Property==1)
-                    {LineType ="跟团游"}
-                else if(pro.Property == 3)
-                    { LineType ="自由行"}
-                else if(pro.Property == 10)
-                    {LineType = "目的地参团"}
-                var linkUrl="http://www.ly.com/dujia/tours/" +pro.Id+(pro.LineType==1? ".html": "/")+ "?ak="+pro.RedirectKey+ "&SellType="+pro.SellType;
-            }}
-            {{?index<6}}
-            <li class="product">
-                <a class="proline__link" trace="{{=index}}" target="_blank" href="{{=linkUrl}}">
-                    <div class="proline__img">
-                        <img data-img="{{=pro.ImageUrl}}" title="{{=pro.Title}}" alt="{{=pro.Title}}">
-                    </div>
-                    <div class="proline__txt">
-                        <p class="proline__title" title="{{=pro.Title}}">{{=pro.Title}}</p>
-                        <p class="proline__subTitle" title="{{=pro.SubTitle}}">{{=pro.SubTitle}}</p>
-                        <p class="proline__price">
-                            <span>¥<em>{{=pro.PreferentialPrice}}</em><b> 起</b></span>
-                        </p>
-                    </div>
-                    <span class="startCity">{{=pro.PortCity}}丨{{=LineType}}</span>
-                </a>
-            </li>
-            {{?}}
-        {{~}}
-    </ul>
-</div>
+{{var it=IT;}}
+
+
+<!-- 主题游头部导航模板 -->
+{{~it.Data.themelabel.ThemeNavBar:item:index}}
+    <div class="J_listbox listbox listbox-{{=index+1}}">
+        <div class="box">
+            <img src="{{=item.ThemeLabel.ImageUrl}}">
+            <dl>
+                <dt><a href="javascript:void(0)">{{=item.ThemeLabel.Name}}</a></dt>
+                <dd>
+                    {{~item.ThemeLabel.LeftRecommendation:label}}
+                        {{?label.HOT == 1}}
+                        <a href="{{=label.URL}}" class="f78" target="_blank" rel="nofollow" title="{{=label.Name}}">{{=label.Name}}</a>
+                        {{??}}
+                        <a href="{{=label.URL}}" target="_blank" rel="nofollow" title="{{=label.Name}}">{{=label.Name}}</a>
+                        {{?}}
+                    {{~}}
+                </dd>
+            </dl>
+        </div>
+        <div class="showlist">
+            <div class="theme-title clearfix">
+                <ul>
+                    {{~item.ThemeDetailLabel.RightTop:rightTop}}
+                        {{?rightTop.HOT == 1}}
+                            <li class="orange">
+                                <a href="{{=rightTop.URL}}" target="_blank" rel="nofollow" title="{{=rightTop.Name}}">{{=rightTop.Name}}</a>
+                            </li>
+                        {{??}}
+                        <li>
+                            <a href="{{=rightTop.URL}}" target="_blank" rel="nofollow" title="{{=rightTop.Name}}">{{=rightTop.Name}}</a>
+                        </li>
+                        {{?}}
+                    {{~}}
+                </ul>
+            </div>
+            <div class="all-theme clearfix">
+                <dl class="theme-choose">
+                    <dt>主题选择</dt>
+                    {{~item.ThemeDetailLabel.RightThemeChoosen:rightThemeChoosen}}
+                    <dd>
+                    {{?rightThemeChoosen.HOT == 1}}
+                        <a class="f78" href="{{=rightThemeChoosen.URL}}" title="{{=rightThemeChoosen.Name}}">{{=rightThemeChoosen.Name}}</a>
+                    {{??}}
+                        <a href="{{=rightThemeChoosen.URL}}" title="{{=rightThemeChoosen.Name}}">{{=rightThemeChoosen.Name}}</a>
+                    {{?}}
+                    </dd>
+                    {{~}}
+                </dl>
+                <dl class="hot-destination">
+                    <dt>热门目的地</dt>
+                    {{~item.ThemeDetailLabel.HotDestination:hotDestination}}
+                    <dd>
+                    {{?hotDestination.HOT == 1}}
+                        <a class="f78" href="{{=hotDestination.URL}}" title="{{=hotDestination.Name}}">{{=hotDestination.Name}}</a>
+                    {{??}}
+                        <a href="{{=hotDestination.URL}}" title="{{=hotDestination.Name}}">{{=hotDestination.Name}}</a>
+                    {{?}}
+                    </dd>
+                    {{~}}
+                </dl>
+                <dl class="play-recommand">
+                    <dt>玩法推荐</dt>
+                    {{~item.ThemeDetailLabel.RecommendPlaying:recommendPlaying}}
+                    <dd>
+                    {{?recommendPlaying.HOT == 1}}
+                        <a class="f78" href="{{=recommendPlaying.URL}}" title="{{=recommendPlaying.Name}}">{{=recommendPlaying.Name}}</a>
+                    {{??}}
+                        <a href="{{=recommendPlaying.URL}}" title="{{=recommendPlaying.Name}}">{{=recommendPlaying.Name}}</a>
+                    {{?}}
+                    </dd>
+                    {{~}}
+                </dl>
+            </div>
+        </div>
+    </div>
+{{~}}
+
+
+/*主题游幻灯模板*/
+{{~it.Data.themelabel.PcSlides:pcSlides:index}}
+    <li>
+        <a href="{{=pcSlides.URL}}" trace="slider_{{=index}}" title="{{=pcSlides.Name}}" target="_blank">
+            <img src="{{=pcSlides.ImageUrl}}" alt="{{=pcSlides.Name}}>
+        </a>
+    </li>
+{{~}}

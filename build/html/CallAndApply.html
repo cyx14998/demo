@@ -9,7 +9,7 @@
 <div id="div" style="width: 200px; height: 200px;background: #ccc;"></div>
     <script type="text/javascript">
         -function(){
-            alert('cyx');
+            console.log('cyx');
         }();
         function Animal(name) {
             this.name = name;
@@ -83,6 +83,12 @@
         console.log(id, status, number);
         console.log(jsonData.data);
         //alert(s1.funcName);
+        for(var i =0 ; i< 10 ; i++){
+            console.log(i);
+            setTimeout(function(){
+                console.log("a");
+            },10)
+        }
     </script>
 </body>
 </html>
