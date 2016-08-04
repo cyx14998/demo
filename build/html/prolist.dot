@@ -86,3 +86,24 @@
         </a>
     </li>
 {{~}}
+
+{/*热推*/}
+{{~it.Data.themelabel.HotSale:hotSale:num}}
+    {{?num < 4}}
+    <li class="product">
+        <a class="proline__link" trace="{{=num}}" target="_blank" href="{{=hotSale.URL}}">
+            <div class="proline__img">
+                <img data-img="{{=hotSale.ImageUrl}}" title="{{=hotSale.MainTitle}}" alt="{{=hotSale.MainTitle}}">
+            </div>
+            <div class="proline__txt">
+                <p class="proline__title" title="{{=hotSale.MainTitle}}">{{=hotSale.MainTitle}}</p>
+                <p class="proline__subTitle" title="{{=hotSale.SubTitle}}">{{=hotSale.SubTitle}}</p>
+                <p class="proline__price">
+                    <span>¥<em>{{=hotSale.AmountDirect}}</em><b> 起</b></span>
+                </p>
+            </div>
+            <span class="startCity">{{=hotSale.LeavePortCityName}}{{=hotSale.LineType}}</span>
+        </a>
+    </li>
+    {{?}}
+{{~}}
