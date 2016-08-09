@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prototype</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+function baseClass()
+{
+    this.showMsg = function()
+    {
+        console.log("baseClass::showMsg");
+    }
+
+    this.baseShowMsg = function()
+    {
+        console.log("baseClass::baseShowMsg");
+    }
+}
+baseClass.showMsg = function()
+{
+    console.log("baseClass::showMsg static");
+}
+
+function extendClass()
+{
+    this.showMsg =function ()
+    {
+        console.log("extendClass::showMsg");
+    }
+}
+extendClass.showMsg = function()
+{
+    console.log("extendClass::showMsg static")
+}
+
+extendClass.prototype = new baseClass();
+var instance = new extendClass();
+
+instance.showMsg(); //显示extendClass::showMsg
+instance.baseShowMsg(); //显示baseClass::baseShowMsg
+instance.showMsg(); //显示extendClass::showMsg
+
+baseClass.showMsg.call(instance);//显示baseClass::showMsg static
+
+var baseinstance = new baseClass();
+baseinstance.showMsg.call(instance);//显示baseClass::showMsg
+
+</script>
+</body>
+</html>
