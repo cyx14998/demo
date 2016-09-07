@@ -41,7 +41,7 @@ gulp.task('connect', function () {
   connect.server({
     root: './',
     ip:'10.101.40.16',
-    port: '8099', //可以修改启动端口号
+    port: '8090', //可以修改启动端口号
     livereload: true
   });
 });
