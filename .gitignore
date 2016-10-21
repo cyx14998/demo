@@ -49,3 +49,5 @@ favicon.ico
 compilerconfig*
 tools/node_modules
 *.node-version
+*.config
+node_modules

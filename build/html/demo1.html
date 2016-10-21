@@ -32,6 +32,22 @@
         console.log(2);
     }
     console.log(10);
+    // Define the callback function.
+function appendCurrent (previousValue, currentValue) {
+    return previousValue + "::" + currentValue;
+    }
+
+// Create an array.
+var elements = ["abc", "def", 123, 456];
+
+// Call the reduce method, which calls the callback function
+// for each array element.
+var result = elements.reduce(appendCurrent);
+
+console.log(result);
+
+// Output:
+//  abc::def::123::456
 </script>
 </body>
 </html>

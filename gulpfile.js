@@ -11,6 +11,7 @@ var rename = require('gulp-rename');
 var minifyCss = require('gulp-minify-css');
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
+var webserver = require('gulp-webserver');
 
 //监听less模块，模块名自定
 gulp.task('less',function(){
@@ -40,10 +41,19 @@ gulp.task('scripts', function() {
 gulp.task('connect', function () {
   connect.server({
     root: './',
-    ip:'10.101.40.16',
-    port: '8090', //可以修改启动端口号
-    livereload: true
+    ip:'10.101.42.28',
+    port: '8080', //可以修改启动端口号
+    livereload: true,
+    open: true
   });
+});
+
+gulp.task('webserver', function() {
+  gulp.src('build')
+    .pipe(webserver({
+      open: true,
+      port: 8080
+    }));
 });
 
 gulp.task('html', function () {
@@ -55,6 +65,4 @@ gulp.task('html', function () {
 });
 
 //默认模块
-gulp.task('default', function(){
-    gulp.run('less','scripts','html','connect');
-});
+gulp.task('default', ['less','scripts','html','connect','webserver']);

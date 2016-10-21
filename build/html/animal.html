@@ -11,15 +11,16 @@
     <script>
         var a1 = new Animator(1414,  function(p){
         var ty = 200 * p * p;
-        block.style.transform = 'translateY(' 
-            + ty + 'px)';     
+        block.style.transform = 'translateY('
+            + ty + 'px)';
         });
 
         var a2 = new Animator(1414,  function(p){
         var ty = 200 - 200 * p * (2-p);
-        block.style.transform = 'translateY(' 
-            + ty + 'px)';     
+        block.style.transform = 'translateY('
+            + ty + 'px)';
         });
+
 
         block.addEventListener('click', function(){
         var animators = new AnimationQueue();
