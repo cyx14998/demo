@@ -8,9 +8,9 @@
 <body>
 <div id="div" style="width: 200px; height: 200px;background: #ccc;"></div>
     <script type="text/javascript">
-        -function(){
+        /*-function(){
             console.log('cyx');
-        }();
+        }();*/
         function Animal(name) {
             this.name = name;
             this.showName = function() {
@@ -19,12 +19,13 @@
         }
 
         function Cat() {
-            Animal.call(this, "Black Cat");//call必须是object
+            var name = "Black Cat";
+            Animal.call(this,name);//call必须是object
         }
         Cat.prototype = new Animal();
 
         function Dog() {
-            Animal.apply(this, ["Black Dog"]);//apply必须是array类型
+            Animal.apply(this, ["white Dog"]);//apply必须是array类型
             //Animal(name); //这样是不能输出Animal里面的showName函数
         }
         Dog.prototype = new Animal();
@@ -54,7 +55,7 @@
                 var msg=[];
                 for(var key in this){
                     if(typeof(this[key])!="function"){
-                        msg.push([key,":",this[key]].join(""));
+                        msg.push([key,":",this[key]].join("") +';');
                     }
                 }
                 console.log(msg.join(" "));
@@ -72,7 +73,7 @@
         var s1=new Student("tom",13,6,"清华小学");
         s1.show();
         s1.sayhello();
-        var jsonData = {
+        /*var jsonData = {
             id: 42,
             status: "OK",
             data: [867, 5309]
@@ -81,14 +82,21 @@
         let { id, status, data: number } = jsonData;
 
         console.log(id, status, number);
-        console.log(jsonData.data);
+        console.log(jsonData.data);*/
         //alert(s1.funcName);
-        for(var i =0 ; i< 10 ; i++){
+        for(var i =0 ; i< 5 ; i++){
             console.log(i);
             setTimeout(function(){
                 console.log("a");
-            },10)
+            },0)
         }
+        var func=new function(){this.a="func"}
+        var myfunc=function(x){
+            var a="myfunc";
+            console.log(this.a);
+            console.log(x);
+        }
+        myfunc.call(func,"var");//func,var
     </script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>GoogleMap</title>
+	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src='index.js'></script>
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div id="floating-panel">
+      	<input id="address" type="textbox" value="">
+      	<input id="submit" type="button" value="搜索">
+    </div>
+	<div class = "hotelList" id = "hotelList">
+		<div id="myMapTip" style="visibility: hidden; left: -1000px; top: -1000px; min-height: 95px; max-height: 108px;" class="HotelWindowInfo"></div>
+		<div id = "MyMap"></div>
+	</div>
+</body>
+<script>
+	var MyHotelListMap = undefined;
+	var GhotelLon=[126.982577][0]||100.58026; //默认的地图中心点
+    var GhotelLat=[37.565994][0]||13.723286; //默认的地图中心点
+	var pointList = "";
+	$.ajax({
+		url: 'http://10.101.42.28:8090/build/html/googleMap/index.json',
+		type: 'get',
+		dataType: 'html',
+		success: function(data){
+			if (MyHotelListMap && MyHotelListMap != undefined) {
+			    MyHotelListMap.InitMarkers(data);
+			}
+			var newdata = JSON.parse(data);
+			pointList = newdata.Data.Hotels;
+		}
+	});
+</script>
+</html>

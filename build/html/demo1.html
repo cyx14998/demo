@@ -33,21 +33,38 @@
     }
     console.log(10);
     // Define the callback function.
-function appendCurrent (previousValue, currentValue) {
-    return previousValue + "::" + currentValue;
+    function appendCurrent (previousValue, currentValue) {
+        return previousValue + "::" + currentValue;
     }
 
-// Create an array.
-var elements = ["abc", "def", 123, 456];
+    // Create an array.
+    var elements = ["abc", "def", 123, 456];
 
-// Call the reduce method, which calls the callback function
-// for each array element.
-var result = elements.reduce(appendCurrent);
+    // Call the reduce method, which calls the callback function
+    // for each array element.
+    var result = elements.reduce(appendCurrent);
 
-console.log(result);
+    console.log(result);
 
-// Output:
-//  abc::def::123::456
+    function* fibonacci(){
+        var fn1 = 1;
+        var fn2 = 1;
+        while (1) {
+            var current = fn2;
+            fn2 = fn1;
+            fn1 = fn1 + current;
+            yield current;
+        }
+    }
+    var fibonacci = fibonacci();
+    console.log(fibonacci.next());
+    console.log(fibonacci.next());
+    console.log(fibonacci.next());
+    console.log(fibonacci.next());
+    console.log(fibonacci.next());
+    console.log(fibonacci.next());
+    // Output:
+    //  abc::def::123::456
 </script>
 </body>
 </html>
