@@ -2,7 +2,7 @@
 setTimeout(function () {
     var tcvst = document.createElement('script');
     tcvst.type = 'text/javascript';
-    tcvst.src = '//ditu.google.cn/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false';
+    tcvst.src = '//ditu.google.cn/maps/api/js?key=AIzaSyB05KSOzubEfYJWO4uscBh3mS2GSo8ZhE0&sensor=false';
 
     tcvst.onreadystatechange = function () {
         var r = tcvst.readyState;
