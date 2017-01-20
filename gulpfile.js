@@ -4,7 +4,6 @@ var gulp = require('gulp'), //本地安装gulp所用到的地方
     less = require('gulp-less');
     // 引入组件
 var jshint = require('gulp-jshint');
-var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');

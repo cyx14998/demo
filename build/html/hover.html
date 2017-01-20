@@ -7,7 +7,7 @@
 <script type="text/javascript">
 $(function(){
     $(".adLink").hover(function(){
-        // $(".my_Link").click();                         
+        // $(".my_Link").click();
         // var div = $(".adLink").offset();
         // var myTop = div.top + $(".adLink").height()-2;
         // $(".my_Link").css({top:myTop,left:div.left+5});
@@ -15,17 +15,17 @@ $(function(){
     },function(){
         $(".my_Link").css({display:"none"});
     });
-    
-    /*$(".adLink").mouseleave(function(event){ 
+
+    /*$(".adLink").mouseleave(function(event){
             console.log('event.srcElement');
             console.log(event.toElement);
         if(event.toElement == $(".my_Link")) {
             $(".my_Link").css({display:"block"});
         }else{
             $(".my_Link").css({display:"none"});
-        }   
-    }); */   
-    
+        }
+    }); */
+
     $(".my_Link").hover(function(e){
         $(".my_Link").css({display:"block"});
             console.log('document.activeElement');
@@ -36,7 +36,7 @@ $(function(){
             console.log(e.currentTarget);
     },function(){
             $(".my_Link").css('display','none');
-    });  
+    });
 });
 </script>
 </head>

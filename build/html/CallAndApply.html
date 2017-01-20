@@ -46,7 +46,7 @@
             this.name=name;     //名字
             this.age=age;       //年龄
             this.sayhello=function(){
-                console.log('hello! '+name+'.You are '+ age +' now!')
+                console.log('hello! '+name+'!You are '+ age +' now!')
             };
         }
         function Print(){            //显示类的属性
@@ -61,16 +61,16 @@
                 console.log(msg.join(" "));
             };
         }
-        function Student(name,age,grade,school){    //学生类
+        function Student(name,age,grade,business){    //学生类
             Person.apply(this,arguments);
             Print.apply(this,arguments);
             this.grade=grade;                //年级
-            this.school=school;                 //学校
-            this.sex = "男";
+            this.business=business;                 //学校
+            this.sex = "man";
         }
-        var p1=new Person("jake",10);
+        var p1=new Person("xin",10);
         p1.sayhello();
-        var s1=new Student("tom",13,6,"清华小学");
+        var s1=new Student("cyx",23,6,"tc");
         s1.show();
         s1.sayhello();
         /*var jsonData = {

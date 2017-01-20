@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>GoogleMap</title>
-	<script src="../js/jquery-1.9.1.min.js"></script>
+	<script src="../../js/jquery-1.9.1.min.js"></script>
 	<script src='index.js'></script>
 	<link rel="stylesheet" href="index.css">
 </head>
@@ -23,7 +23,7 @@
     var GhotelLat=[37.565994][0]||13.723286; //默认的地图中心点
 	var pointList = "";
 	$.ajax({
-		url: 'http://10.101.42.28:8090/build/html/googleMap/index.json',
+		url: 'http://10.101.42.28:8090/build/html/googleMap/0.1.0/index.json',
 		type: 'get',
 		dataType: 'html',
 		success: function(data){

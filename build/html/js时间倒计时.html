@@ -29,12 +29,12 @@
 <script type="text/javascript">
     function countdown(){
         var show_time = document.getElementById("show_time");
-        endtime = new Date("2/7/2016 23:59:59");//结束时间
+        endtime = new Date("1/27/2017 23:59:59");//结束时间
         today = new Date();//当前时间
         delta_T = endtime.getTime() - today.getTime();//时间间隔 时间戳格式
         // console.log(delta_T);
         if(delta_T < 0){
-            clearInterval(auto);
+            clearInterval();
             show_time.innerHTML = "倒计时已经结束";
         }
         window.setTimeout(countdown,1000);
@@ -50,9 +50,9 @@
         total_seconds = (total_minutes - minutes_show)*60;//剩余的分钟数
         seconds_show = Math.floor(total_seconds);//实际显示的秒数
         if(seconds_show < 10){
-            show_time.innerHTML = "距离2016年春节还有:" + total_show + "天" + hours_show + "时" + minutes_show + "分" + 0 + seconds_show + "秒";
+            show_time.innerHTML = "距离2017年春节还有:" + total_show + "天" + hours_show + "时" + minutes_show + "分" + 0 + seconds_show + "秒";
         }else{
-            show_time.innerHTML = "距离2016年春节还有:" + total_show + "天" + hours_show + "时" + minutes_show + "分" + seconds_show + "秒";
+            show_time.innerHTML = "距离2017年春节还有:" + total_show + "天" + hours_show + "时" + minutes_show + "分" + seconds_show + "秒";
         }
     }
     countdown();
