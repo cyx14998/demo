@@ -48,12 +48,12 @@
 			lng: 116.40739499999995,
 			lat: 39.904211,
 	    	i: 4
-		},*/
+		},
 		{//万年
 			lng: 117.058445,
 			lat: 28.694582,
 	    	i: 5
-		}
+		}*/
 	];
 	var index = {};
 	index = {
@@ -106,11 +106,11 @@
 			}
 			map.enableScrollWheelZoom(true);
 			var centerPoint = new BMap.Point(baidumapPoints[0].x, baidumapPoints[0].y);
-			map.centerAndZoom(centerPoint, 12);
+			map.centerAndZoom(centerPoint, 16);
 			this.changeZoom(map,baidumapPoints);
 
 			//百度地图点
-			var polyline = new BMap.Polyline(baidupoints, {strokeColor:"blue", strokeWeight:2, strokeOpacity:0.5});   //创建折线
+			var polyline = new BMap.Polyline(baidupoints, {strokeColor:"blue", strokeWeight:3, strokeOpacity:0.5});   //创建折线
 			map.addOverlay(polyline);   //增加折线
 
 			//谷歌地图点
@@ -118,11 +118,12 @@
 			map.addOverlay(polyline2);   //增加折线
 			console.log('红色的是谷歌地图的点，蓝色的是百度地图的点');
 		},
-		changeZoom: function(map,baidumapPoints){
+		changeZoom: function(map,baidumapPoints){ //改变zoom值，以达到每个点都能显示在地图上
 			var bs = map.getBounds();   //获取可视区域
 			var bssw = bs.getSouthWest();   //可视区域左下角
 			var bsne = bs.getNorthEast();   //可视区域右上角
 			var flag = false;
+            var zoom = map.getZoom();
 			for (var i = 0; i <= baidumapPoints.length - 1; i++) {
                 var item = baidumapPoints[i];
                 if (item.y < bssw.lat || item.y > bsne.lat || item.x < bssw.lng || item.x > bsne.lng) {
@@ -130,16 +131,48 @@
                 }
             }
             if(flag){
-            	var zoom = map.getZoom();
             	if(zoom != 1){
-            		zoom --;
-	        		map.setZoom(zoom);
+	        		map.setZoom(--zoom);
             		this.changeZoom(map,baidumapPoints);
+            		return;
 	            }
             }
-            map.panTo(new BMap.Point((bssw.lng + bsne.lng) / 2,(bssw.lat + bsne.lat) / 2));
-            return zoom;
-		}
+            console.log(zoom);
+            var rect = this.getRectMinMax(baidumapPoints);
+            var centerPoint = new BMap.Point((rect.minx + rect.maxx) / 2 , (rect.miny + rect.maxy) / 2);
+            map.setCenter(centerPoint);
+			var centerMarker = new BMap.Marker(centerPoint);
+			var label = new BMap.Label("中心点",{offset:new BMap.Size(20,3)});
+			centerMarker.setLabel(label);
+			map.addOverlay(centerMarker);
+		},
+		//获取最大最小范围
+	    getRectMinMax: function(pointArray) {
+
+	        if (pointArray.length < 3) {
+	            return undefined;
+	        }
+	        var rect = [];
+	        rect.minx = pointArray[0].x;
+	        rect.maxx = pointArray[0].x;
+	        rect.miny = pointArray[0].y;
+	        rect.maxy = pointArray[0].y;
+	        for (var i = 0; i <= pointArray.length - 1; i++) {
+	            if (pointArray[i].x < rect.minx) {
+	                rect.minx = pointArray[i].x;
+	            }
+	            if (pointArray[i].x > rect.maxx) {
+	                rect.maxx = pointArray[i].x;
+	            }
+	            if (pointArray[i].y < rect.miny) {
+	                rect.miny = pointArray[i].y;
+	            }
+	            if (pointArray[i].y > rect.maxy) {
+	                rect.maxy = pointArray[i].y;
+	            }
+	        }
+	        return rect;
+	    }
 	}
 	index.init(lnglat);
 </script>
