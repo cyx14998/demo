@@ -64,7 +64,7 @@
 			var self = this;
 			var nowlnglat = [];
 			var j = cfg.length;
-			(function dealArr(i,length,callback){//循环处理异步数组
+			(function dealAsynArr(i,length,callback){//循环处理异步数组
 				if(i<length){
 					$.ajax({
 						url: 'http://api.map.baidu.com/geoconv/v1/?ak=lPGUAKTenGMKpHjapeAMynK3SuHTTtgy&coords=' + cfg[i].lng +',' + cfg[i].lat,
@@ -72,7 +72,7 @@
 						success: function(data){
 							var x = data.result[0];
 							nowlnglat.push(x);
-							dealArr(++i,length,callback);
+							dealAsynArr(++i,length,callback);
 						}
 					})
 				}else{
@@ -137,7 +137,6 @@
             		return;
 	            }
             }
-            console.log(zoom);
             var rect = this.getRectMinMax(baidumapPoints);
             var centerPoint = new BMap.Point((rect.minx + rect.maxx) / 2 , (rect.miny + rect.maxy) / 2);
             map.setCenter(centerPoint);
