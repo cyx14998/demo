@@ -11,6 +11,15 @@ var minifyCss = require('gulp-minify-css');
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
 var webserver = require('gulp-webserver');
+var fs = require('fs');
+var conversion = require('phantom-html-to-pdf');// 好像没起作用
+var fs = require('fs');
+
+conversion({ html: "<h1>Hello World</h1>" }, function(err, pdf) {
+  console.log(pdf.logs); //这边进不来
+  console.log(pdf.numberOfPages);
+  pdf.stream.pipe(res);
+});
 
 //监听less模块，模块名自定
 gulp.task('less',function(){
@@ -40,8 +49,8 @@ gulp.task('scripts', function() {
 gulp.task('connect', function () {
   connect.server({
     root: './',
-    ip:'10.101.42.28',
-    port: '8080', //可以修改启动端口号
+    ip:'10.101.42.17',
+    port: '8081', //可以修改启动端口号
     livereload: true,
     open: true
   });
@@ -51,7 +60,7 @@ gulp.task('webserver', function() {
   gulp.src('build')
     .pipe(webserver({
       open: true,
-      port: 8080
+      port: 8081
     }));
 });
 

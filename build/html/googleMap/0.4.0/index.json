@@ -1,0 +1,803 @@
+{
+  "Code": 4000,
+  "Status": "Success",
+  "Data": {
+    "Hotels": [
+      {
+        "HotelId": 86059,
+        "Name": "首尔东大门华美达安可酒店",
+        "EnglishName": "Ramada Encore Seoul Dongdaemun",
+        "Address": "22, Wangsan-ro, Dongdaemun-gu",
+        "BusinessCircle": "",
+        "PEImageUrl": "//pic4.40017.cn/hotel/global/2016/07/27/15/EI2FBI.jpg",
+        "Score": "4.2",
+        "Brand": "",
+        "Drill": "3",
+        "isShow": true,
+        "Facility": [
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/10/13/cElnBd.png",
+            "Name": "餐厅"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/17/09/vf5Zee.png",
+            "Name": "咖啡"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/10/11/k7dmDV.png",
+            "Name": "会议室"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/16/20/xTuzdh.png",
+            "Name": "礼宾服务"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/10/11/tyWP2z.png",
+            "Name": "行李寄存"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/16/19/mMRRre.png",
+            "Name": "24小时接待"
+          },
+          {
+            "Icon": "//pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 127.02628,
+        "PILatGG": 37.57624,
+        "IsDirect": 0,
+        "IsSelected": 1,
+        "Rooms": [
+          {
+            "Name": "标准大床房",
+            "IsSelected": 1,
+            "Rates": [
+              {
+                "RoomId": 0,
+                "RateCode": "DB34EF691B75D79DCE04905963968742|JHOMUCN|HHCL",
+                "Name": "标准大床房",
+                "BedType": "",
+                "BedTypes": [
+                ],
+                "IsInstantConfirm": 1,
+                "IsIncludeBreakfast": 0,
+                "BreakfastExplain": "无早餐",
+                "CancleType": "不可取消",
+                "CanclePolicy": "预订成功后，订单无法取消。如订单不确认，将全额退款至您的付款账户，敬请谅解。",
+                "SupplierId": 4,
+                "Mandatories": [
+                  
+                ],
+                "MinRoomCount": 1,
+                "MaxRoomCount": 2,
+                "MaxUser": 2,
+                "MaxUserDescription": "每间最多入住2人",
+                "LeftCount": 0,
+                "RoomCount": 1,
+                "Price": 1464,
+                "DifferencePrice": 0,
+                "IsHavePrivilege": 1,
+                "PrivilegeExplain": "最低天数折扣",
+                "SpecialNeeds": [
+                  
+                ],
+                "TargetCustomer": null,
+                "IsSelected": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "HotelId": 14351,
+        "Name": "首尔乐天酒店",
+        "EnglishName": "Lotte Hotel Seoul",
+        "Address": "30, Eulji-ro, Jung-gu",
+        "BusinessCircle": "明洞",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/27/13/druPH9.jpg",
+        "Score": "4.6",
+        "Brand": "",
+        "Drill": "5",
+        "isShow": true,
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/Osr9FU.png",
+            "Name": "SPA"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/YUh8Ig.png",
+            "Name": "多语言服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/uiy7MJ.png",
+            "Name": "ATM "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/k7dmDV.png",
+            "Name": "会议室"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/QXuRdo.png",
+            "Name": "快速入住、退房 "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/mMRRre.png",
+            "Name": "24小时接待"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/paycU9.png",
+            "Name": "购物店"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/5Dn9UE.png",
+            "Name": "报纸"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/j4eblc.png",
+            "Name": "按摩"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/5DbTIA.png",
+            "Name": "儿童看护 "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/fxo21y.png",
+            "Name": "桑拿"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/17/09/vf5Zee.png",
+            "Name": "咖啡"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/hPcDig.png",
+            "Name": "酒吧"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/yJ93ll.png",
+            "Name": "康体俱乐部"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/0tHkJv.png",
+            "Name": "室内泳池 "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/cElnBd.png",
+            "Name": "餐厅"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 126.9804,
+        "PILatGG": 37.56598,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 26092,
+        "Name": "首尔时代广场万怡酒店",
+        "EnglishName": "Courtyard by Marriott Seoul Times Square",
+        "Address": "15, Yeongjung-ro,Yeongdeungpo-gu",
+        "BusinessCircle": "永登浦",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/27/16/VuQZCq.jpg",
+        "Score": "4.5",
+        "Brand": "",
+        "Drill": "4",
+        "isShow": true,
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/xTuzdh.png",
+            "Name": "礼宾服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/ewrusq.png",
+            "Name": "洗衣"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/5Dn9UE.png",
+            "Name": "报纸"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/cElnBd.png",
+            "Name": "餐厅"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/14/7UR78E.png",
+            "Name": "有线网络"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/paycU9.png",
+            "Name": "购物店"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/k7dmDV.png",
+            "Name": "会议室"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/Y4h7O4.png",
+            "Name": "代客泊车"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/15/0lGgqr.png",
+            "Name": "旅游和票务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/tyWP2z.png",
+            "Name": "行李寄存"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/mMRRre.png",
+            "Name": "24小时接待"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/hPcDig.png",
+            "Name": "酒吧"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/uiy7MJ.png",
+            "Name": "ATM "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/14/HJvCR2.png",
+            "Name": "儿童俱乐部 "
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 126.90413,
+        "PILatGG": 37.51819,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "isShow": true,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 37281,
+        "Name": "首尔国都最佳西方精品酒店",
+        "EnglishName": "Best Western Premier Hotel Kukdo",
+        "Address": "164, Eulji-ro, Jung-gu",
+        "BusinessCircle": "明洞",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/27/20/ipJxqW.jpg",
+        "Score": "4.1",
+        "Brand": "",
+        "Drill": "4",
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/cElnBd.png",
+            "Name": "餐厅"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/hPcDig.png",
+            "Name": "酒吧"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/mMRRre.png",
+            "Name": "24小时接待"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/tyWP2z.png",
+            "Name": "行李寄存"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/14/7UR78E.png",
+            "Name": "有线网络"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/5Dn9UE.png",
+            "Name": "报纸"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/xTuzdh.png",
+            "Name": "礼宾服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/ewrusq.png",
+            "Name": "洗衣"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/17/09/vf5Zee.png",
+            "Name": "咖啡"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 126.99637,
+        "PILatGG": 37.56651,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "isShow": true,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 20251,
+        "Name": "中心马克酒店",
+        "EnglishName": "Center Mark Hotel",
+        "Address": "38, Insadong 5-gil, Jongno-gu",
+        "BusinessCircle": "明洞",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/27/13/vHFnDS.jpg",
+        "Score": "4.2",
+        "Brand": "",
+        "Drill": "4",
+        "isShow": true,
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/ewrusq.png",
+            "Name": "洗衣"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/17/09/vf5Zee.png",
+            "Name": "咖啡"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/xTuzdh.png",
+            "Name": "礼宾服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/QXuRdo.png",
+            "Name": "快速入住、退房 "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/tyWP2z.png",
+            "Name": "行李寄存"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/k7dmDV.png",
+            "Name": "会议室"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/14/7UR78E.png",
+            "Name": "有线网络"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 126.98438,
+        "PILatGG": 37.57226,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 46598,
+        "Name": "明洞蒂马克酒店",
+        "EnglishName": "Tmark Hotel Myeongdong",
+        "Address": "15, Chungmu-ro, Jung-gu",
+        "BusinessCircle": "明洞",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/27/13/Tj64oZ.jpg",
+        "Score": "4.2",
+        "Brand": "",
+        "Drill": "4",
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/ewrusq.png",
+            "Name": "洗衣"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/cElnBd.png",
+            "Name": "餐厅"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/mMRRre.png",
+            "Name": "24小时接待"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/xTuzdh.png",
+            "Name": "礼宾服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/15/0lGgqr.png",
+            "Name": "旅游和票务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/14/7UR78E.png",
+            "Name": "有线网络"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 126.99306,
+        "PILatGG": 37.56239,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 439322,
+        "Name": "明洞Tmark豪华酒店",
+        "EnglishName": "TMARK GRAND MYEONGDONG",
+        "Address": "52, Toegye-ro, Jung-gu, Seoul, Korea",
+        "BusinessCircle": "明洞",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/12/09/14/YAFkQl.jpg",
+        "Score": "4.0",
+        "Brand": "",
+        "Drill": "5",
+        "Facility": [
+          
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 126.97,
+        "PILatGG": 37.55,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 11604,
+        "Name": "首尔华美达酒店",
+        "EnglishName": "Ramada Seoul",
+        "Address": "112-5 Samsung-Dong Gangnam-Gu",
+        "BusinessCircle": "三成洞/COEX",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/27/21/OpTyiw.jpg",
+        "Score": "3.7",
+        "Brand": "",
+        "Drill": "4",
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/5Dn9UE.png",
+            "Name": "报纸"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/fxo21y.png",
+            "Name": "桑拿"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/ewrusq.png",
+            "Name": "洗衣"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/tyWP2z.png",
+            "Name": "行李寄存"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/QXuRdo.png",
+            "Name": "快速入住、退房 "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/14/7UR78E.png",
+            "Name": "有线网络"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/YUh8Ig.png",
+            "Name": "多语言服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/uiy7MJ.png",
+            "Name": "ATM "
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/cElnBd.png",
+            "Name": "餐厅"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/10/PyCFW7.png",
+            "Name": "健身中心"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/mMRRre.png",
+            "Name": "24小时接待"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/Osr9FU.png",
+            "Name": "SPA"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/k7dmDV.png",
+            "Name": "会议室"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/hPcDig.png",
+            "Name": "酒吧"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 127.04508,
+        "PILatGG": 37.51062,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 43656,
+        "Name": "首尔顶峰酒店",
+        "EnglishName": "The Summit Hotel Seoul Dongdaemun",
+        "Address": "198, Jangchungdan-ro",
+        "BusinessCircle": "明洞",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/27/15/Z3XvFZ.jpg",
+        "Score": "4.2",
+        "Brand": "",
+        "Drill": "3",
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/tyWP2z.png",
+            "Name": "行李寄存"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/ewrusq.png",
+            "Name": "洗衣"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/17/09/vf5Zee.png",
+            "Name": "咖啡"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/k7dmDV.png",
+            "Name": "会议室"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/xTuzdh.png",
+            "Name": "礼宾服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/15/0lGgqr.png",
+            "Name": "旅游和票务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 127.00671,
+        "PILatGG": 37.56222,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "Rooms": [
+          
+        ]
+      },
+      {
+        "HotelId": 107182,
+        "Name": "明洞 STAY B 酒店",
+        "EnglishName": "STAY B Hotel Myeongdong",
+        "Address": "23-1, Chungmu-ro, Jung-gu",
+        "BusinessCircle": "明洞",
+        "PEImageUrl": "http://pic4.40017.cn/hotel/global/2016/07/28/23/wJB7BJ.jpg",
+        "Score": "4.1",
+        "Brand": "",
+        "Drill": "3",
+        "Facility": [
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/14/7UR78E.png",
+            "Name": "有线网络"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/WcZRlY.png",
+            "Name": "商务服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/mMRRre.png",
+            "Name": "24小时接待"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/23/14/mP3bFT.png",
+            "Name": "免费WIFI"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/19/webFOM.png",
+            "Name": "电梯"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/YUh8Ig.png",
+            "Name": "多语言服务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/tyWP2z.png",
+            "Name": "行李寄存"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/11/VVZ2W1.png",
+            "Name": "花园"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/hPcDig.png",
+            "Name": "酒吧"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/13/ewrusq.png",
+            "Name": "洗衣"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/12/15/0lGgqr.png",
+            "Name": "旅游和票务"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/17/09/vf5Zee.png",
+            "Name": "咖啡"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/cElnBd.png",
+            "Name": "餐厅"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/10/13/FlpUh2.png",
+            "Name": "早餐"
+          },
+          {
+            "Icon": "http://pic4.40017.cn/hotel/global/2016/05/16/20/xTuzdh.png",
+            "Name": "礼宾服务"
+          }
+        ],
+        "CheckInTime": "2016-12-27",
+        "CheckOutTime": "2016-12-30",
+        "Nights": 3,
+        "CityId": 3195,
+        "City": "首尔",
+        "Distance": "0",
+        "PILonGG": 126.99292,
+        "PILatGG": 37.56333,
+        "IsDirect": 0,
+        "IsSelected": 0,
+        "Rooms": [
+        ]
+      }
+    ]
+  }
+}
