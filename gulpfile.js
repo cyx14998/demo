@@ -12,14 +12,8 @@ var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
 var webserver = require('gulp-webserver');
 var fs = require('fs');
-var conversion = require('phantom-html-to-pdf');// 好像没起作用
-var fs = require('fs');
 
-conversion({ html: "<h1>Hello World</h1>" }, function(err, pdf) {
-  console.log(pdf.logs); //这边进不来
-  console.log(pdf.numberOfPages);
-  pdf.stream.pipe(res);
-});
+var browserSync = require("browser-sync").create();//这个 好像不太好用
 
 //监听less模块，模块名自定
 gulp.task('less',function(){
