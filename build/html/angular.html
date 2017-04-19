@@ -10,7 +10,7 @@
 	    Hello {{control2}}!
 	    名字: <input ng-model="yourname">
 	    <button ng-click='click()'>{{yourname}}</button>
-	    <cc ng-show="flag"></cc>
+	    <section ng-show="flag"></section>
 	    <h1>{{num | myFormat}}</h1>
 	    <ul ng-repeat="x in names">
 	    	<li>{{x}}</li>
@@ -20,12 +20,14 @@
     	{{control2}}
     </div>
 </body>
+
+
+
 <script>
 var app = angular.module('myApp', []);
-app.controller('PhoneListCtrl',function($scope){
+app.controller('PhoneListCtrl',function($scope,str){
 	$scope.control2='蔡阳先';
 	$scope.yourname = '收起';
-	$scope.num = 255;
 	$scope.flag = true;
 	$scope.click = function(){
 		$scope.flag = !$scope.flag;
@@ -36,9 +38,10 @@ app.controller('PhoneListCtrl',function($scope){
 		}
 	}
 	$scope.names = ['c','y','x'];
+	$scope.num = str.myFunc(255);
 })
 //自定义指令
-.directive('cc',function(){
+.directive('section',function(){
 	return {
 		template: '<h1>自定义指令</h1>'
 	}
