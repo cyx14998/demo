@@ -12,7 +12,7 @@ var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
 var webserver = require('gulp-webserver');
 var fs = require('fs');
-
+var bytediff = require('gulp-bytediff');
 var browserSync = require("browser-sync").create();//这个 好像不太好用
 
 //监听less模块，模块名自定
@@ -31,10 +31,9 @@ gulp.task('scripts', function() {
     gulp.watch('build/js/*/*.js',function(){
         gulp.src('build/js/*/*.js')
             //.pipe(concat('all.js'))  //文件合并
-            //.pipe(gulp.dest('build/dist')) //文件生成后的位置
+            .pipe(uglify())  //文件压缩
+            .pipe(gulp.dest('build/dist')) //文件生成后的位置
             //.pipe(rename('all.min.js')) //文件重命名
-            //.pipe(uglify())  //文件压缩
-            .pipe(gulp.dest('build/dist'))
             .pipe(connect.reload());
     })
 })
@@ -68,3 +67,10 @@ gulp.task('html', function () {
 
 //默认模块
 gulp.task('default', ['less','scripts','html','connect','webserver']);
+
+function bytediffFormatter(data) {
+    let difference = (data.savings > 0) ? ' smaller.' : ' larger.',
+        result = data.savings > 0 ? ('and is ' +
+        $.util.colors.yellow.bold(~~((1 - data.percent) * 100) + '%') + difference) : "";
+    return `${$.util.colors.cyan.bold(data.fileName)} from ${$.util.colors.yellow.bold((data.startSize / 1000).toFixed(2))} kB to ${$.util.colors.yellow.bold((data.endSize / 1000).toFixed(2))} kB ${result}`;
+}

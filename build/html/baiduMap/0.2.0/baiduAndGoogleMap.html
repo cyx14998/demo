@@ -37,7 +37,16 @@
 	tileLayer.getTilesUrl = function(tileCoord, zoom) {
 		var x = tileCoord.x;
 		var y = tileCoord.y;
-		var url = 'http://mt1.google.cn/vt/lyrs=m@142&hl=zh-CN&gl=cn&x='+tileCoord.x+'&y='+tileCoord.y+'&z='+zoom+'&s=Galil';     //根据当前坐标，选取合适的瓦片图
+		x = Math.floor((x * Math.pow(2,18-zoom)))/256;
+		y = Math.floor((y * Math.pow(2,18-zoom)))/256;
+
+		/*var lat = tileCoord.x;
+		var lng = tileCoord.y;
+		var x = (lng + 180) * (256 << 2) / 360 + 512;
+		var siny = Math.sin(lat * Math.PI / 180);
+		var y = Math.log((1 + siny) / (1 - siny));*/
+
+		var url = 'http://mt1.google.cn/vt/lyrs=m@142&hl=zh-CN&gl=cn&x='+x+'&y='+y+'&z='+zoom+'&s=Galil';     //根据当前坐标，选取合适的瓦片图
 		return url;
 	}
 	var marker = new BMap.Marker(latlng2);

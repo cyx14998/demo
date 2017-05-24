@@ -23,9 +23,9 @@
     var GhotelLat=[37.565994][0]||13.723286; //默认的地图中心点
 	var pointList = "";
 	$.ajax({
-		url: 'http://10.100.156.179:8209/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1&CityId=5121',
+		url: 'http://www.ly.com/intervacation/background/poi/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1,2,3,4&CityId=5120&pagesize=15&pageindex=1&Name=',
 		type: 'get',
-		dataType: 'jsonp',
+		dataType: 'json',
 		success: function(data){
 			if (MyHotelListMap && MyHotelListMap != undefined) {
 			    MyHotelListMap.InitMarkers(data.ReturnValue.POIInfoList);

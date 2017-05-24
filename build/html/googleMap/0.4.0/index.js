@@ -1031,7 +1031,7 @@ $(document).on("click","#getdata",function(){
             return;
         }else{
             $.ajax({
-                url: 'http://10.100.156.179:8209/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1&CityId=5120',
+                url: 'http://www.ly.com/intervacation/background/poi/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1,2,3,4&CityId=5120&pagesize=15&pageindex=1&Name=',
                 dataType: 'jsonp',
                 type: 'get',
                 success: function(data){
@@ -1057,7 +1057,7 @@ $(document).on("click","#getdata2",function(){
             return;
         }else{
             $.ajax({
-                url: 'http://10.100.156.179:8209/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1&CityId=5132',
+                url: 'http://www.ly.com/intervacation/background/poi/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1,2,3,4&CityId=5120&pagesize=15&pageindex=1&Name=',
                 dataType: 'jsonp',
                 type: 'get',
                 success: function(data){

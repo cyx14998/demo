@@ -16,4 +16,5 @@ function* gen(){
     var file2 = yield readFile('./readme.md');
 }
 var g = gen();
-console.log(g.next().value);
+g.next().value;
+g.next().value;
