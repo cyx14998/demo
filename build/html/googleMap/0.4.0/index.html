@@ -8,14 +8,14 @@
 	<link rel="stylesheet" href="index.css">
 </head>
 <body>
-	<div id="floating-panel">
-      	<input id="address" type="textbox" value="">
-      	<input id="submit" type="button" value="搜索">
-    </div>
 	<div class = "hotelList" id = "hotelList">
-		<div id="myMapTip" style="visibility: hidden; left: -1000px; top: -1000px; min-height: 95px; max-height: 108px;" class="HotelWindowInfo"></div>
+		<div id="myMapTip" style="visibility: hidden; left: -1000px; top: -1000px; min-height: 95px; max-height: 128px;" class="HotelWindowInfo"></div>
 		<div id = "MyMap"></div>
 	</div>
+	<button id="getdata">获取数据</button>
+	<button id="getdata2">获取数据2</button>
+	<button id="delline">删除连线</button>
+	<button id="deldata2">删除数据3</button>
 </body>
 <script>
 	var MyHotelListMap = undefined;
@@ -23,15 +23,15 @@
     var GhotelLat=[37.565994][0]||13.723286; //默认的地图中心点
 	var pointList = "";
 	$.ajax({
-		url: 'http://10.101.42.17:8090/build/html/googleMap/0.1.0/index.json',
+		url: 'http://www.ly.com/intervacation/background/poi/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1,2,3,4&CityId=5120&pagesize=15&pageindex=1&Name=',
 		type: 'get',
-		dataType: 'html',
+		dataType: 'json',
 		success: function(data){
 			if (MyHotelListMap && MyHotelListMap != undefined) {
-			    MyHotelListMap.InitMarkers(data);
+			    MyHotelListMap.InitMarkers(data.ReturnValue.POIInfoList);
 			}
-			var newdata = JSON.parse(data);
-			pointList = newdata.Data.Hotels;
+			var newdata = data.ReturnValue.POIInfoList;
+		 	pointList = newdata;
 		}
 	});
 </script>

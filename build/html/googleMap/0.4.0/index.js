@@ -578,17 +578,19 @@ function MyMapLoad() {
 
         this.div.style.left = position.x - 12 + "px";
         this.div.style.bottom = -position.y + "px";
-        if (this.isShow) {
+        /*if (this.isShow) {
             this.div.style.display = "block";
         }
         else {
             this.div.style.display = "none";
-        }
+        }*/
 
     }
     MyMarker.prototype.onRemove = function () {
-        this.div.parentNode.removeChild(this.div);
-        this.div = null;
+        if(this.div){
+            this.div.parentNode.removeChild(this.div);
+            this.div = null;
+        }
     }
 
 
@@ -621,7 +623,7 @@ function HotelListMap(MyMarker, InfoBox) {
         mapTypeControl: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("MyMap"), mapProp);
+    map = new google.maps.Map(document.getElementById("MyMap"), mapProp);
 
     var MarkLists = [];
     var NowCenter = undefined;
@@ -641,25 +643,25 @@ function HotelListMap(MyMarker, InfoBox) {
             return undefined;
         }
         var rect = new Rectangle();
-        rect.minx = pointArray[0].Longitude;
-        rect.maxx = pointArray[0].Longitude;
-        rect.miny = pointArray[0].Latitude;
-        rect.maxy = pointArray[0].Latitude;
+        rect.minx = pointArray[0].PILonGG;
+        rect.maxx = pointArray[0].PILonGG;
+        rect.miny = pointArray[0].PILatGG;
+        rect.maxy = pointArray[0].PILatGG;
         for (var i = 0; i <= pointArray.length - 1; i++) {
             if (!pointArray[i].isShow) {
                 continue;
             }
-            if (pointArray[i].Longitude < rect.minx) {
-                rect.minx = pointArray[i].Longitude;
+            if (pointArray[i].PILonGG < rect.minx) {
+                rect.minx = pointArray[i].PILonGG;
             }
-            if (pointArray[i].Longitude > rect.maxx) {
-                rect.maxx = pointArray[i].Longitude;
+            if (pointArray[i].PILonGG > rect.maxx) {
+                rect.maxx = pointArray[i].PILonGG;
             }
-            if (pointArray[i].Latitude < rect.miny) {
-                rect.miny = pointArray[i].Latitude;
+            if (pointArray[i].PILatGG < rect.miny) {
+                rect.miny = pointArray[i].PILatGG;
             }
-            if (pointArray[i].Latitude > rect.maxy) {
-                rect.maxy = pointArray[i].Latitude;
+            if (pointArray[i].PILatGG > rect.maxy) {
+                rect.maxy = pointArray[i].PILatGG;
             }
         }
         return rect;
@@ -686,7 +688,7 @@ function HotelListMap(MyMarker, InfoBox) {
             var flag = false;
             for (var i = 0; i <= obj.PointList.length - 1; i++) {
                 var item = obj.PointList[i];
-                /*if (item.Latitude < minY || item.Latitude > maxY || item.Longitude < minX || item.Longitude > maxX) {
+                /*if (item.PILatGG < minY || item.PILatGG > maxY || item.PILonGG < minX || item.PILonGG > maxX) {
                     flag = true;
                 }*/
                 if (item.isShow) {
@@ -708,146 +710,143 @@ function HotelListMap(MyMarker, InfoBox) {
     google.maps.event.addListener(map, "dragstart", function (e) {
         moveFlag = true;
     });
-    /*可以搜索地点*/
-    var geocoder = new google.maps.Geocoder();
-    document.onkeydown = function(event){
-        var e = event || window.event || arguments.callee.caller.arguments[0];
-        //当输入框有值
-        if($("#address").val()){
-            if(e && e.keyCode==27){ // 按 Esc
-                //要做的事情
-            }
-            if(e && e.keyCode==113){ // 按 F2
-                //要做的事情
-            }
-            if(e && e.keyCode==13){ // enter 键
-                //要做的事情
-                geocodeAddress(geocoder, map);
-            }
-        }else{
-            return;
-        }
-    };
-    document.getElementById('submit').addEventListener('click', function() {
-        geocodeAddress(geocoder, map);
-    });
 
     // google.maps.event.addListener(map, "zoom_changed", function (e) {
     google.maps.event.addListener(map, "mouseover", function (e) {
         moveFlag = true;
     });
-    google.maps.event.addListener(map, "zoom_changed", function (e) {
+    /*google.maps.event.addListener(map, "zoom_changed", function (e) {
         for (var i = 0; i <= obj.MarkLists.length - 1; i++) {
             if (obj.MarkLists[i].IsActive) {
                 obj.mouseoverFun(i, obj.MarkLists[i]);
             }
         }
+    });*/
+    //添加到行程后点的标记，后面不能删除这些标记
+    $(document).on('click',".clear",function(e){
+        path = poly.getPath();
+        var lat = parseFloat($(this).attr('data-lat'));
+        var lng = parseFloat($(this).attr('data-lng'));
+        var latlng = new google.maps.LatLng(lat,lng);
+        path.push(latlng);
+        var thislatlng = {
+            lat: lat,
+            lng: lng
+        }
+        markerInPath.push(thislatlng);
+        if(pathPoints && pathPoints.length){
+            for(var i=0; i<pathPoints.length; i++){
+                if(lat == pathPoints[i].lat && lng == pathPoints[i].lng){
+                    break;
+                }else{
+                    pathPoints.push({lat:lat,lng:lng});
+                }
+            }
+        }else{
+            pathPoints.push({lat:lat,lng:lng});
+        }
     });
     //鼠标移上去效果
     this.mouseoverFun = function (index, obj, isShowMyMapTip) {
-        if (obj.isShow) {
-            $(".HotelHead").eq(index).addClass("HotelHeadActive");
-            $(".HotelItem").eq(index).addClass("HotelItemActive");
-            obj.IsActive = true;
-            $(".mapMarkerIcon").each(function () {
-                $(this).parent().removeClass("mapMarkerActive");
-            });
-            $(obj.div).addClass("mapMarkerActive");
-            var screenCoor = MapCoorToScreenCoor(obj, obj.latlng);
-            if (screenCoor == undefined) {
-                return;
-            }
-            var top = screenCoor.clientY - 34 / 2 - $("#myMapTip")[0].offsetHeight / 2;
-            var left = screenCoor.clientX - 34 / 2 - $("#myMapTip")[0].offsetWidth + 2;
-            if (screenCoor.clientY < 0 || screenCoor.clientX < 0 ||
-                screenCoor.clientY > $("#MyMap").height() || screenCoor.clientX > $("#MyMap").width()) {
-                obj.mouseoutFun(index, obj);
-            }
-            else {
-                if (isShowMyMapTip != "noshowmyMapTip") {
-                    var HotelStarHtml = "";
-                    if (obj.hotelStar != undefined) {
-                        for (var j = 0; j <= obj.hotelStar - 1; j++) {
-                            HotelStarHtml += '<span class="ImageIcon icon_zuan"></span>';
-                        }
-                    }
-
-                    var HotelScoreHtml = "";
-                    if (obj.hotelScore != undefined && obj.hotelScore != "0" && obj.hotelScore != "0.0") {
-                        HotelScoreHtml += '<span class="lMHIScore"><span>' + obj.hotelScore + '</span>分</span>';
-                    }
-
-                    var HotelAddressHtml = "";
-                    if (obj.hotelAddress != undefined && obj.hotelAddress != "") {
-                        HotelAddressHtml += '<p class="lMHIAddress">' + SubTitleByLen(obj.hotelAddress, 30) + '</p>';
-                    }
-
-                    var hotelImg = '';
-                    if (obj.hotelPic != undefined && obj.hotelPic != "null") {
-                        hotelImg = obj.hotelPic;
-                    } else {
-                        hotelImg = '//img1.40017.cn/cn/h/PCGhotel/images/default_165_120.jpg';
-                    }
-
-                    var lMHIhtml = '<div class="littleMapHotelInfo">\
-                                    <div class="lMHILeft">\
-                                        <img src="' + hotelImg + '">\
-                                    </div>\
-                                    <div class="lMHIRight">\
-                                        <p class="lMHITitle">' + SubTitleByLen(obj.TitleText, 30) + '</p>\
-                                        <div class="lMHIStarScore">' + HotelStarHtml + HotelScoreHtml + '\
-                                            <div class="clear"></div>\
-                                        </div>' + HotelAddressHtml + '\
-                                    </div>\
-                                    <div class="clear"></div>\
-                                </div>';
-                    $("#myMapTip").css('width','332px');
-                    $("#myMapTip").html(lMHIhtml);
-                } else {
-                    $("#myMapTip").css('width', 'auto');
-                    $("#myMapTip").html("");
-                }
-
-                $("#myMapTip").data("markerLng", obj.latlng);
-                if ($("#myMapTip").width() >= 332) {
-                    $("#myMapTip").css("width", "332px");
-                }
-                else {
-                    $("#myMapTip").css("width", "auto");
-                }
-                $("#myMapTip").css({ visibility: "visible", top: top + "px", left: left + "px" });
-            }
+        //obj.IsActive = true;
+        var screenCoor = MapCoorToScreenCoor(obj, obj.latlng);
+        if (screenCoor == undefined) {
+            return;
         }
-        else {
+        var top = screenCoor.clientY + 0;
+        var left = screenCoor.clientX - 150;
+        if (screenCoor.clientY < 0 || screenCoor.clientX < 0 ||
+            screenCoor.clientY > $("#MyMap").height() || screenCoor.clientX > $("#MyMap").width()) {
             obj.mouseoutFun(index, obj);
         }
+        else {
+            if (isShowMyMapTip != "noshowmyMapTip") {
+                var HotelStarHtml = "";
+                if (obj.hotelStar != undefined) {
+                    for (var j = 0; j <= obj.hotelStar - 1; j++) {
+                        HotelStarHtml += '<span class="ImageIcon icon_zuan"></span>';
+                    }
+                }
+
+                var HotelScoreHtml = "";
+                if (obj.hotelScore != undefined && obj.hotelScore != "0" && obj.hotelScore != "0.0") {
+                    HotelScoreHtml += '<span class="lMHIScore"><span>' + obj.hotelScore + '</span>分</span>';
+                }
+
+                var HotelAddressHtml = "";
+                if (obj.hotelAddress != undefined && obj.hotelAddress != "") {
+                    HotelAddressHtml += '<p class="lMHIAddress">' + SubTitleByLen(obj.hotelAddress, 30) + '</p>';
+                }
+
+                var hotelImg = '';
+                if (obj.hotelPic != undefined && obj.hotelPic != "null") {
+                    hotelImg = obj.hotelPic;
+                } else {
+                    hotelImg = '//img1.40017.cn/cn/h/PCGhotel/images/default_165_120.jpg';
+                }
+
+                var lMHIhtml = '<div class="littleMapHotelInfo">\
+                                <div class="lMHILeft">\
+                                    <img src="' + hotelImg + '">\
+                                </div>\
+                                <div class="lMHIRight">\
+                                    <p class="lMHITitle">' + SubTitleByLen(obj.TitleText, 30) + '</p>\
+                                    <div class="lMHIStarScore">' + HotelStarHtml + HotelScoreHtml + '\
+                                        <div class="clear"></div>\
+                                    </div>' + HotelAddressHtml + '\
+                                </div>\
+                                <div class="clear" data-lat = '+obj.lat+' data-lng = '+obj.lng+'>添加到行程</div>\
+                            </div>';
+                $("#myMapTip").css('width','332px');
+                $("#myMapTip").html(lMHIhtml);
+            } else {
+                $("#myMapTip").css('width', 'auto');
+                $("#myMapTip").html("");
+            }
+
+            $("#myMapTip").data("markerLng", obj.latlng);
+            if ($("#myMapTip").width() >= 332) {
+                $("#myMapTip").css("width", "332px");
+            }
+            else {
+                $("#myMapTip").css("width", "auto");
+            }
+            $("#myMapTip").css({ visibility: "visible", top: top + "px", left: left + "px" });
+        }
     }
-    var x;
+    var time;
     this.mouseoutFun = function (index, obj) {
-        x = setTimeout(function(){
-            $(".HotelHead").eq(index).removeClass("HotelHeadActive");
-            $(".HotelItem").eq(index).removeClass("HotelItemActive");
-            obj.IsActive = false;
+        time = setTimeout(function(){
+            //obj.IsActive = false;
             $("#myMapTip").css({ visibility: "hidden", left: "-1000px", top: "-1000px" });
-            $(obj.div).removeClass("mapMarkerActive");
         },200)
     };
     $("#myMapTip").off("mouseenter").on("mouseenter", function() {
-        clearTimeout(x);
+        clearTimeout(time);
         $("#myMapTip").css({ visibility: "visible" });
     }).off("mouseleave").on("mouseleave", function() {
         $("#myMapTip").css({ visibility: "hidden", left: "-1000px", top: "-1000px" });
     })
-    this.MarkLists = MarkLists;
     this.InitMarkers = InitMarkers;
     InitMarkers(pointList);
+    this.MarkLists = MarkLists;
     //初始化地图上的图标
-    function InitMarkers(pointList) {
+    function InitMarkers(pointList,isRemove) {
         var oldmoveFlag = moveFlag;
         moveFlag = false;
-        $.each(MarkLists, function () {
-            this.setMap(null);
-        });
+        //删除标记
+        if(isRemove && isRemove == 1){
+            for(var j=0; j<markers.length; j++){
+                var nowPointList = isInArr(markerInPath,pointList);
+                for(var i=0; i<nowPointList.length; i++){
+                    if(markers[j].lat == nowPointList[i].PILatGG && markers[j].lng == nowPointList[i].PILonGG){
+                        markers[j].setMap(null);
+                        markers.splice(j,1);
+                    }
+                }
+            }
+            return;
+        }
         MarkLists = [];
         this.PointList = pointList;
         NowCenter = undefined;
@@ -855,7 +854,7 @@ function HotelListMap(MyMarker, InfoBox) {
             return;
         }
         if (NowCenter == undefined) {
-            NowCenter = new google.maps.LatLng(pointList[0].Latitude, pointList[0].Longitude);
+            NowCenter = new google.maps.LatLng(pointList[0].PILatGG, pointList[0].PILonGG);
         }
         var pointArray2 = [];
         for (var i = 0; i <= pointList.length - 1; i++) {
@@ -866,10 +865,10 @@ function HotelListMap(MyMarker, InfoBox) {
         var rect = getRectMinMax(pointArray2);
         if (rect == undefined) {
             if (pointArray2.length == 1) {
-                NowCenter = new google.maps.LatLng(pointArray2[0].Latitude, pointArray2[0].Longitude);
+                NowCenter = new google.maps.LatLng(pointArray2[0].PILatGG, pointArray2[0].PILonGG);
             }
             if (pointArray2.length == 2) {
-                NowCenter = new google.maps.LatLng((pointArray2[0].Latitude + pointArray2[1].Latitude) / 2, (pointArray2[0].Longitude + pointArray2[1].Longitude) / 2);
+                NowCenter = new google.maps.LatLng((pointArray2[0].PILatGG + pointArray2[1].PILatGG) / 2, (pointArray2[0].PILonGG + pointArray2[1].PILonGG) / 2);
             }
         }
         else {
@@ -879,7 +878,9 @@ function HotelListMap(MyMarker, InfoBox) {
 
             var item = pointList[i];
             var Marker2 = new MyMarker({
-                latlng: new google.maps.LatLng(item.Latitude, item.Longitude),
+                latlng: new google.maps.LatLng(item.PILatGG, item.PILonGG),
+                lat: item.PILatGG,
+                lng: item.PILonGG,
                 image: "//img1.40017.cn/cn/v/wanle/2015/details/default-map-1.png",
                 labelText: "<span  class='mapMarkerIcon'></span>",
                 index: i,
@@ -888,15 +889,33 @@ function HotelListMap(MyMarker, InfoBox) {
                 map: map,
                 isShow: item.isShow
             });
-            Marker2.EnglishName = item.EnglishName;
-            Marker2.TitleText = item.Name;
-            Marker2.hotelStar = item.hotelStar;
-            Marker2.hotelScore = item.hotelScore;
-            Marker2.hotelPic = item.CoverImg;
-            Marker2.hotelAddress = item.Address;
+            Marker2.lat = item.PILatGG;
+            Marker2.lng = item.PILonGG;
+            Marker2.EnglishName = item.PINameEN;
+            Marker2.TitleText = item.PIName;
+            Marker2.hotelStar = item.PIStars;
+            Marker2.hotelScore = item.PIId;
+            Marker2.hotelPic = item.PEImageUrl;
+            Marker2.hotelAddress = item.PEPlayTime;
             MarkLists.push(Marker2);
+            if(item.isShow){
+                pathPoints.push({lat:item.PILatGG, lng:item.PILonGG});
+                path.push(new google.maps.LatLng(item.PILatGG, item.PILonGG));
+            }
         }
         this.MarkLists = MarkLists;
+        if(this.MarkLists && this.MarkLists.length){
+            $.each(this.MarkLists,function(index, el) {
+                markers.push(el);
+            });
+        }
+        poly = new google.maps.Polyline({
+            path: path,
+            strokeColor: '#000000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+        poly.setMap(map);
         if (NowCenter != undefined) {
             // map.setOptions({ position: NowCenter, zoom: 12 });
             tilesloaded = false;
@@ -919,6 +938,18 @@ function HotelListMap(MyMarker, InfoBox) {
         else {
             return undefined;
         }
+    }
+    function isInArr(markerInPath, pointLists){
+        if(markerInPath && markerInPath.length){
+            for(var x=0; x<markerInPath.length; x++){
+                for(var i=0; i<pointLists.length; i++){
+                    if(pointLists[i].PILatGG == markerInPath[x].lat && pointLists[i].PILonGG == markerInPath[x].lng){
+                        return pointLists.splice(i,1);
+                    }
+                }
+            }
+        }
+        return pointLists;
     }
 }
 
@@ -951,7 +982,7 @@ function SubTitleByLen(str, len, replaceTxt) {
             a = str.charAt(i);
             str_length++;
             if (escape(a).length > 4) {
-                //中文字符的长度经编码之后大于4  
+                //中文字符的长度经编码之后大于4
                 str_length++;
             }
             str_cut = str_cut.concat(a);
@@ -959,7 +990,7 @@ function SubTitleByLen(str, len, replaceTxt) {
                 str_cut = str_cut.concat(replaceTxt != undefined ? replaceTxt : "...");
                 return str_cut;
             }
-        } else { //如果给定字符串小于指定长度，则返回源字符串；  
+        } else { //如果给定字符串小于指定长度，则返回源字符串；
             return str;
         }
     }
@@ -981,18 +1012,68 @@ var GetLength = function (str) {
     }
     return realLength;
 };
-
-function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById('address').value;
-  geocoder.geocode({'address': address}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      resultsMap.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: resultsMap,
-        position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
+var map;
+var poly; //地图上的线
+var path = [];  //地图上线的path
+var pathPoints = [];  //地图上path所包含的点
+var IndexData = []; //数据
+var markers = [];   //所有的标记
+var markerInPath = [];  //连过线的标记
+$(document).on("click","#getdata",function(){
+    if($(this).hasClass('active')){
+        $(this).removeClass('active')
+        var arr = IndexData.thisdata;
+        MyHotelListMap.InitMarkers(arr,1);
+        IndexData.thisdata = null;
+    }else{
+        $(this).addClass('active');
+        if(IndexData.thisdata && IndexData.thisdata.length){
+            return;
+        }else{
+            $.ajax({
+                url: 'http://www.ly.com/intervacation/background/poi/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1,2,3,4&CityId=5120&pagesize=15&pageindex=1&Name=',
+                dataType: 'jsonp',
+                type: 'get',
+                success: function(data){
+                    IndexData.thisdata = data.ReturnValue.POIInfoList;
+                    if (MyHotelListMap && MyHotelListMap != undefined) {
+                        MyHotelListMap.InitMarkers(data.ReturnValue.POIInfoList);
+                    }
+                }
+            })
+        }
     }
-  });
-}
+})
+
+$(document).on("click","#getdata2",function(){
+    if($(this).hasClass('active')){
+        $(this).removeClass('active')
+        var arr = IndexData.thisdata2;
+        MyHotelListMap.InitMarkers(arr,1);
+        IndexData.thisdata2 = null;
+    }else{
+        $(this).addClass('active');
+        if(IndexData.thisdata2 && IndexData.thisdata2.length){
+            return;
+        }else{
+            $.ajax({
+                url: 'http://www.ly.com/intervacation/background/poi/travel/supergopoi/JourneyInfo/GetPoiInfoList?type=1,2,3,4&CityId=5120&pagesize=15&pageindex=1&Name=',
+                dataType: 'jsonp',
+                type: 'get',
+                success: function(data){
+                    IndexData.thisdata2 = data.ReturnValue.POIInfoList;
+                    if (MyHotelListMap && MyHotelListMap != undefined) {
+                        MyHotelListMap.InitMarkers(data.ReturnValue.POIInfoList);
+                    }
+                }
+            })
+        }
+    }
+})
+$(document).on("click","#delline",function(){
+    if(path && path.length){
+        path.clear();
+        pathPoints = [];
+        markerInPath = [];
+    }
+})

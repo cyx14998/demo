@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>GetUserMedia实例</title>
+    <style>
+        .grayscale{
+            -webkit-filter: grayscale(1);
+            -moz-filter: grayscale(1);
+            -ms-filter: grayscale(1);
+            filter: grayscale(1);
+        }
+        .sepia{
+            -webkit-filter: sepia(1);
+            -moz-filter: sepia(1);
+            -ms-filter: sepia(1);
+            filter: sepia(1);
+        }
+        .invert{
+            -webkit-filter: invert(1);
+            -moz-filter: invert(1);
+            -ms-filter: invert(1);
+            filter: invert(1);
+        }
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+    <video id="video" autoplay></video>
+    <button id="capture">capture</button>
+    <button id="downloadLnk">downloadLnk</button>
+    <button id="noFilter">noFilter</button>
+    <button id="blackAndWhite">blackAndWhite</button>
+    <button id="sepia">sepia</button>
+    <button id="invert">invert</button>
+</body>
+
+
+<script type="text/javascript">
+    /*var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+
+    getUserMedia.call(navigator, {
+        video: true,
+        audio: true
+    }, function(localMediaStream) {
+        var video = document.getElementById('video');
+        video.src = window.URL.createObjectURL(localMediaStream);
+        video.onloadedmetadata = function(e) {
+            console.log("Label: " + localMediaStream.label);
+            console.log("AudioTracks" , localMediaStream.getAudioTracks());
+            console.log("VideoTracks" , localMediaStream.getVideoTracks());
+        };
+    }, function(e) {
+        console.log('Reeeejected!', e);
+    });
+    var dataChannelOptions = {
+        ordered: false, // do not guarantee order
+        maxRetransmitTime: 3000, // in milliseconds
+    };
+
+    var peerConnection = new RTCPeerConnection();
+
+    // Establish your peer connection using your signaling channel here
+    var dataChannel = peerConnection.createDataChannel("myLabel", dataChannelOptions);
+
+    dataChannel.onerror = function (error) {
+        console.log("Data Channel Error:", error);
+    };
+
+    dataChannel.onmessage = function (event) {
+        console.log("Got Data Channel Message:", event.data);
+    };
+
+    dataChannel.onopen = function () {
+        dataChannel.send("Hello World!");
+    };
+
+    dataChannel.onclose = function () {
+        console.log("The Data Channel is Closed");
+    };*/
+    // Restrict camera resolution to 640x360
+var constraints = window.constraints = { audio: false, video: { width: 640, height: 360 } };
+var canvas = document.querySelector('canvas');
+var filters = ['', 'grayscale', 'sepia', 'invert'], currentFilter = 0; 
+var video = document.querySelector('video');
+
+//Accesses the user's camera and displays feed in video tag
+navigator.mediaDevices.getUserMedia(constraints)
+.then(function(stream) {
+        var videoTracks = stream.getVideoTracks();
+        console.log('Got stream with constraints:', constraints);
+        console.log('Using video device: ' + videoTracks[0].label);
+        stream.onended = function() {
+                console.log('Stream ended');
+         };
+        window.stream = stream; // make variable available to browser console
+        video.srcObject = stream;
+
+})
+.catch(function(err) { console.log(err.name + ": " + err.message); }); // catches any errors
+
+//Displays the captured selfie in the canvas area and applies filters as selected
+document.querySelector('#capture').addEventListener('click', function (event) {
+    if (video) {
+        canvas.width = video.clientWidth;
+        canvas.height = video.clientHeight;
+        var context = canvas.getContext('2d');
+        context.drawImage(video, 0, 0);
+        }
+});
+document.querySelector('#downloadLnk').addEventListener('click', function (event) {
+    var dt = canvas.toDataURL('image/jpeg');
+    window.open(dt);
+});
+
+// Filter selection below
+//No filter
+document.querySelector('#noFilter').addEventListener('click', function (event) {
+    canvas.className = filters[0];
+});
+//Black and White filter
+document.querySelector('#blackAndWhite').addEventListener('click', function (event) {
+    canvas.className = filters[1];
+});
+//Sepia Filter
+document.querySelector('#sepia').addEventListener('click', function (event) {
+    canvas.className = filters[2];
+});
+//Invert filter
+document.querySelector('#invert').addEventListener('click', function (event) {
+    canvas.className = filters[3];
+});
+</script>
+
+
+</html>
