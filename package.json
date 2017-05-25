@@ -11,7 +11,7 @@
     "name": "cyx",
     "email": "915976779@qq.com"
   },
-  "license": "cyx",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
