@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="refresh" content="3" ;>
+	<title>Document</title>
+	<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+	<style>
+		body{
+			background: aliceblue;
+		}
+		.out{border:1px solid #F00; width:500px;}
+		.inner1{width:200px; height:200px; float:left; border:1px solid #00F;}
+		.inner2{width:200px; height:200px; float:left; border:1px solid #0F0;}
+		.clearfix:after,.clearfix:before{content:".";display:block;height:0;clear:both;visibility:hidden}
+		.clearfix{*+height:1%;}
+		table tr td{border:solid #add9c0; border-width:0px 1px 1px 0px; padding:10px;}
+		table{border:solid #add9c0; border-width:1px 0px 0px 1px;}
+	</style>
+</head>
+<body>
+	<div class="out">
+		<div class="inner1"></div>
+		<div class="inner2"></div>
+		<div class="clearfix"></div>
+	</div>
+	<div id="time"></div>
+	<div id="showText"></div>
+	<div id="mousepos"></div>
+	<div id="addNodes">
+		<table>
+		</table>
+	</div>
+	<script>
+
+		/*resize 方法的应用*/
+		var x=0;
+		$(window).resize(function(){  
+			/*location.reload();*/ //控制网页一直刷新
+			var oW = document.body.clientWidth;
+			var oH = document.body.clientHeight; 
+			x+=1;
+			$("#showText").html("网页可见区域宽为:" + oW + "<br>" + "网页可见区域高为:" + oH);
+		});
+		
+
+		$(function(){
+			/*调用dateToStr()函数*/
+			dateToStr(2008433221145);
+
+			/*调用resize方法*/
+			$(window).resize();
+
+			/*设置每一秒调用一次getTime()函数*/
+			setInterval(function(){$("#time").html(getTime())},1000); //或者 $("#time").html(getTime),1000;
+				 
+			/*验证数组Array扩展是否包含元素属性：*/
+			Array.prototype.contains = function(e)
+			{
+			    for(i=0;i<this.length;i++){
+			        if(this[i] == e)
+			        return true;
+			    }
+			    return false;
+			}
+			/*用法：*/
+			var temp = [1,2,3,4,5];
+			//alert(temp.contains(4));
+
+
+			/*获取浏览器url地址栏参数*/
+			function getUrlString(name) {
+			    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");//正则运算RegExp
+			    var r = window.location.search.substr(1).match(reg);
+			    if (r != null) return unescape(r[2]); return null;
+			}
+			//alert(getUrlString("url"));
+
+
+			/*获取当前鼠标位置mousemove方法*/
+			$("body").mousemove(function(e){
+				var oX = e.pageX;  //clientX:相对于客户端，screenX:相对于电脑屏幕
+				var oY = e.pageY;
+				$("#mousepos").text("鼠标的坐标为: (" + oX +"," + oY + ")");
+			});
+
+
+			/*增加节点*/
+			/*$("#addNodes table").append("<tr>"+ "姓名" +"</tr>" + "<tr>"+ "年龄" +"</tr>"+ "<tr>"+ "性别" +"</tr>" + "<tr>"+ "身份证号" +"</tr>");*/
+		});
+		
+
+		/*获取数据后处理变成中国标准时间*/
+		function dateToStr(datetime){
+			datetime = new Date(parseInt(datetime));
+    		var year = datetime.getFullYear();
+    		var month = datetime.getMonth() + 1;//js从0开始取 
+		    var date = datetime.getDate();
+		    var hour = datetime.getHours();
+		    var minutes = datetime.getMinutes();
+		    var second = datetime.getSeconds();
+    		console.log(year + "-" + month + "-" + date + " " + hour + ":" + minutes + ":" + second); //格式:2009-06-12 17:18:05);
+		};
+		
+
+		/*获取当前时间*/
+		function getTime(){    
+			var oDate= new Date();
+			var oHours = oDate.getHours();
+			var oMinutes = oDate.getMinutes();
+			var oSeconds = oDate.getSeconds();
+			if(oHours < 10){
+				return "0" + oHours +":"+ oMinutes + ":" + oSeconds;
+			}
+			if(oMinutes < 10){
+				return oHours +":"+ "0" + oMinutes + ":" + oSeconds;
+			}
+			if(oSeconds < 10){
+				//console.log(oSeconds);
+				return oHours +":"+ oMinutes + ":" + "0" + oSeconds;
+			}
+			else{
+				return oHours +":"+ oMinutes + ":" + oSeconds;	
+			}
+		}
+
+	</script>
+</body>
+</html>

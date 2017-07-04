@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css-content</title>
+	<style>
+		.outer{
+			width: 500px;
+			height: 400px;
+			margin: 0 auto;
+			/*background: blue;*/
+			border-radius: 5px;
+			border: 1px solid #D5D5D5;
+			position: relative;
+			overflow: hidden;
+		}
+		.outer .inner{
+			position: relative;
+			float: left;
+			width: 50%;
+			box-sizing: border-box;
+		}
+		.outer .inner a img{
+			width: 100%;
+			height: auto;
+		}
+		/* content 简单用法 none： 不生成任何值
+							attr： 插入标签属性值
+							url： 使用指定的绝对或相对地址插入一个外部资源（图像，声频，视频或浏览器支持的其他任何资源）
+							string： 插入字符串
+		*/
+		.outer .inner a:after{
+			content: attr(title);
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+			background-color:rgba(0,0,0,0.5);
+			line-height:30px;
+			color: #fff;
+			text-align:center;
+			font-size:14px;
+			text-shadow:-1px -1px 0 rgba(0,0,0,0.8);
+			opacity: 0;
+			-webkit-transition:all 0.3s ease;
+			-moz-transition:all 0.3s ease;
+			-ms-transition:all 0.3s ease;
+			-o-transition:all 0.3s ease;
+			transition:all 0.3s ease;
+		}
+		.outer .inner a:hover:after{
+			top:50%;
+			opacity: 0.6;
+			margin-top: -15px;
+		}
+	</style>
+</head>
+<body>
+	<div class="outer">
+		<div class="inner1 inner">
+			<a href="#" title="快乐时光">
+				<img src="images/9.jpg" alt="">
+			</a>
+		</div>
+		<div class="inner2 inner">
+			<a href="#" title="避暑狂欢">
+				<img src="images/12.jpg" alt="">
+			</a>
+		</div>
+	</div>
+</body>
+</html>

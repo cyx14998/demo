@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>css画太极</title>
+    <style>
+        body{
+            background: #eee;
+        }
+	    div{
+            position: relative;
+            width: 50px;
+            height: 100px;
+            border-right: 50px solid #000;
+            background: #fff;
+            border-radius: 50%;
+	    }
+	    div:before{
+            position: absolute;
+            top: 0px;
+            left: 25px;
+            z-index: 999;
+            content: "";
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            border: 15px solid #000;
+	    }
+	    div:after{
+            position: absolute;
+            bottom: 0px;
+            left: 25px;
+            z-index: 999;
+            content: "";
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            border: 15px solid #fff;
+	    }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

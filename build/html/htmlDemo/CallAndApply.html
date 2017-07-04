@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CallAndApply</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<div id="div" style="width: 200px; height: 200px;background: #ccc;"></div>
+    <script type="text/javascript">
+        /*-function(){
+            console.log('cyx');
+        }();*/
+        function Animal(name) {
+            this.name = name;
+            this.showName = function() {
+                console.log(this.name);
+            };
+        }
+
+        function Cat() {
+            var name = "Black Cat";
+            Animal.call(this,name);//call必须是object
+        }
+        Cat.prototype = new Animal();
+
+        function Dog() {
+            Animal.apply(this, ["white Dog"]);//apply必须是array类型
+            //Animal(name); //这样是不能输出Animal里面的showName函数
+        }
+        Dog.prototype = new Animal();
+
+        var cat = new Cat();
+
+        var dog = new Dog();
+
+        cat.showName();
+        dog.showName();
+
+        console.log(cat instanceof Animal); //cat是否是Animal的实例
+        console.log(dog instanceof Animal);
+        console.log(typeof cat === typeof dog);
+
+
+        function Person(name,age){   //定义一个类，人类
+            this.name=name;     //名字
+            this.age=age;       //年龄
+            this.sayhello=function(){
+                console.log('hello! '+name+'!You are '+ age +' now!')
+            };
+        }
+        function Print(){            //显示类的属性
+            this.funcName="Print";
+            this.show=function(){
+                var msg=[];
+                for(var key in this){
+                    if(typeof(this[key])!="function"){
+                        msg.push([key,":",this[key]].join("") +';');
+                    }
+                }
+                console.log(msg.join(" "));
+            };
+        }
+        function Student(name,age,grade,business){    //学生类
+            Person.apply(this,arguments);
+            Print.apply(this,arguments);
+            this.grade=grade;                //年级
+            this.business=business;                 //学校
+            this.sex = "man";
+        }
+        var p1=new Person("xin",10);
+        p1.sayhello();
+        var s1=new Student("cyx",23,6,"tc");
+        s1.show();
+        s1.sayhello();
+        /*var jsonData = {
+            id: 42,
+            status: "OK",
+            data: [867, 5309]
+        };
+
+        let { id, status, data: number } = jsonData;
+
+        console.log(id, status, number);
+        console.log(jsonData.data);*/
+        //alert(s1.funcName);
+        for(var i =0 ; i< 5 ; i++){
+            console.log(i);
+            setTimeout(function(){
+                console.log("a");
+            },0)
+        }
+        var func=new function(){this.a="func"}
+        var myfunc=function(x){
+            var a="myfunc";
+            console.log(this.a);
+            console.log(x);
+        }
+        myfunc.call(func,"var");//func,var
+    </script>
+</body>
+</html>

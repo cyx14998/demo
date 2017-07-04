@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bridge</title>
+	<style>
+		body{
+        margin:0;
+    }
+    a{
+        margin: 20px;
+        word-break: break-all;
+        display: block;
+        font-weight: bold;
+        font-size: 14px;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        color: #FFFFFF;
+        background-color: #98bf21;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 32px;
+        text-decoration: none;
+    }
+	</style>
+</head>
+<body>
+<div class="content">
+	<a href="javascript:void(0)" onclick="javascript:get_device_info();">获取设备信息</a>
+	<a href="javascript:void(0)" onclick="javascript:user_login();">登录</a>
+	<a href="javascript:void(0)" onclick="javascript:user_logout();">注销</a>
+	<a href="javascript:void(0)" onclick="javascript:get_contacts();">获取联系人信息</a>
+</div>
+<script src="http://js.40017.cn/touch/cn/guoneiyou/common/zepto.min.js"></script>
+<script src="//js.40017.cn/cn/min/??/touch/hb/c/bridge.1.5.0.js"></script>
+<script src="//js.40017.cn/touch/public/common/0.0.8/common.js?v=08201006"></script>
+<script>
+	window.onload=function(){
+        var url = location.href;
+        if(url.indexOf("tcwvcwl") > 0){
+            return;
+        }
+        if(url.indexOf("?") > 0){
+            url = url + "&tcwvcwl";
+        }else{
+            url = url + "?tcwvcwl";
+        }
+        location.replace(url);
+	};
+	/*获取设备信息*/
+	function get_device_info(shareKey){
+	    var jsonObj = {
+            "param": {
+                "tagname":"device_info"
+            },
+            "CBPluginName": "_tc_web_user",
+            "CBTagName": "get_device_info"
+        };
+	    window._tc_bridge_user.get_device_info(jsonObj);
+	};
+	/*登录*/
+	function user_login(mobile){
+        var jsonObj = {
+            "param": {
+                "tagname":"logininfo"
+            },
+            "CBPluginName": "_tc_web_user",
+            "CBTagName": "user_login"
+        };
+        window._tc_bridge_user.user_login(jsonObj);
+	};
+    /*注销*/
+    function user_logout(){
+    	var jsonObj = {
+            "param":{
+                "tagname":"logout"
+            },
+            "CBPluginName": "_tc_web_user",
+            "CBTagName": "user_logout"
+        };
+        window._tc_bridge_user.user_logout(jsonObj);
+    };
+    /*获取手机联系人*/
+    function get_contacts(){
+    	var jsonObj = {
+            "param":{
+                "tagname":"contacts"
+            },
+            "CBPluginName": "_tc_web_user",
+            "CBTagName": "get_contacts"
+        };
+        window._tc_bridge_user.get_contacts(jsonObj);
+    }
+    /*回调函数*/
+	window._tc_web_user={
+		get_device_info: function(data){
+			alert(JSON.stringify(data));
+		},
+        user_logout: function(){
+        	alert("user_logout");
+        },
+        user_login: function(){
+        	alert("user_login");
+        },
+        get_contacts: function(){
+        	alert("get_contacts");
+        }
+    }
+</script>
+</body>
+</html>

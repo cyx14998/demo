@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script type="text/javascript" src="http://player.youku.com/jsapi"></script>
+<body>
+	<video id="youkuplayer" class="video-js vjs-default-skin vjs-big-play-centered"  controls autoHide = "false" preload="none" poster='../../video/1.jpg' data-setup='{ "aspectRatio":"640:360" }'>
+	    <source src="https://ohi509cp3.qnssl.com/dazhoubian/20170214/1702141059017251810204910.mp4" type='video/mp4' />
+	    <source src="https://ohi509cp3.qnssl.com/dazhoubian/20170214/1702141059017251810204910.mp4" type='video/webm' />
+	</video>
+	<script src = '../js/jquery-1.9.1.min.js'></script>
+	<script>
+		player = new YKU.Player('youkuplayer',{
+	      styleid: 1,                          //炫彩播放器样式 0-9
+	      client_id: '',                         //优酷开放平台创建应用的client_id 这个是必须的登录优酷在后台创建一个应用就有。
+	      vid: '替换成优酷视频ID',                 //视频ID 这个视频id就是优酷视频连接后面的字符串，这个应该懂吧。
+	      autoplay: true,                        //是否自动播放视频
+	      show_related: true,                    //播放完成是否显示相关视频
+	      embsig: '',                            //嵌入式播放器签名(非网站类应用必须设置)
+	     events:{
+	         onPlayerReady: function(){ /*your code*/ }, //播放器准备就绪调用
+	        onPlayStart: function(){ /*your code*/ },   //播放器开始播放时调用
+	         onPlayEnd: function(){ /*your code*/ }      //播放器结束播放时调用
+	     }
+	 });
+	 function playVideo(){
+	     player.playVideo();  //播放
+	 }
+	 function pauseVideo(){
+	     player.pauseVideo();  //暂停
+	 }
+	 function seekTo(s){
+	     player.seekTo(s);//定位至指定时间
+	 }
+	 function currentTime(){
+	     return player.currentTime();//当前播放时间
+	 }
+	</script>
+</body>
+</html>

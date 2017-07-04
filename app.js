@@ -18,3 +18,6 @@ function* gen(){
 var g = gen();
 g.next().value;
 g.next().value;
+
+
+

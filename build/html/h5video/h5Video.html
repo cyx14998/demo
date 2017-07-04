@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+	<title>Document</title>
+	<link href="../css/video.css" rel="stylesheet">
+	<style>
+		video::-webkit-media-controls-enclosure {
+		    /*禁用播放器控制栏的样式*/
+		    display: none!important;
+		    -webkit-appearance: none;
+		}
+		body{
+			padding: 0;
+			margin: 0;
+		}
+		#instructions { max-width: 640px; text-align: left;  }
+		#instructions textarea { width: 100%; height: 100px; }
+
+		/* Show the controls (hidden at the start by default) */
+		.video-js .vjs-control-bar {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -ms-flexbox;
+			display: flex;
+		}
+
+		/* Make the demo a little prettier */
+		body {
+			background: #222;
+			text-align: center;
+			color: #aaa;
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			background: radial-gradient(#333, hsl(200,30%,6%) );
+		}
+		.vjs-poster{
+			background-size: cover;
+		}
+	  	a, a:hover, a:visited { color: #76DAFF; }
+	</style>
+</head>
+<body>
+<video id="my_video_1" class="video-js vjs-default-skin vjs-big-play-centered"  controls autoHide = "false" preload="metadata" poster='../../video/1.jpg' data-setup='{ "aspectRatio":"640:360" }'>
+    <source src="https://ohi509cp3.qnssl.com/dazhoubian/20170214/1702141059017251810204910.mp4" type='video/mp4' />
+    <source src="https://ohi509cp3.qnssl.com/dazhoubian/20170214/1702141059017251810204910.mp4" type='video/webm' />
+</video>
+<script src = '../js/jquery-1.9.1.min.js'></script>
+<script src="../js/video.js"></script>
+<script>
+	var video = $("video");
+	for(var i=0;i<video.length;i++){
+		var index = +i +1;
+		var player = videojs('my_video_' + index, {
+		    "autoplay":false,
+		    controlBar: {
+		        captionsButton: false,
+		        chaptersButton : false,
+		        liveDisplay:false,
+		        playbackRateMenuButton: false,
+		        subtitlesButton:false
+		     }
+
+		}, function(){
+
+		    this.on('play',function(){
+		    	//这里做判断是否是在wifi的环境下
+		    	console.log(1);
+		    	var isWifi = true;
+		    	if(!isWifi){
+		    		this.pause();
+		    	}
+		    })
+
+		    this.on('ended',function(){
+		         this.pause();
+		    })
+
+		});
+	}
+</script>
+</body>
+</html>

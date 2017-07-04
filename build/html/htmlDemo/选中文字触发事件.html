@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>选中文字后触发事件</title>
+<script type="text/javascript">
+
+function share(){
+    var text = '';
+    if(navigator.appName=="Microsoft Internet Explorer"){
+        text=document.selection.createRange().text;
+    }else{
+        text=window.getSelection();
+    }
+    var len= get_length(""+text+"");
+    if(len>0) {
+       alert(text)
+    }
+}
+
+function get_length(str) {
+    var sum = 0;
+    for (var i = 0; i < str.length; i++) {
+        if ((str.charCodeAt(i) >= 0) && (str.charCodeAt(i) <= 255))
+            sum = sum + 0.5;
+        else
+            sum = sum + 1;
+    }
+    return parseInt(sum);
+}
+</script>
+</head>
+<body>
+<span id="ss" onMouseUp="share()">
+    这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字
+</span>
+</body>
+</html>

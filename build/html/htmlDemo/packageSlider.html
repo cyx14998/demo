@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        .clearfix:after{
+            content: '.';
+            clear: both;
+            display: block;
+            height: 0;
+            line-height: 0;
+            visibility: hidden;
+        }
+        .ImgSlider{
+            width: 1070px;
+            height: 350px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .outer{
+            width: 1070px;
+            height: 350px;
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+        }
+        .inner{
+            position: absolute;
+        }
+        .imgWrapper{
+            width: 1070px;
+            height: 350px;
+            background: #eee;
+        }
+        .imgWrapper img{
+            width: 100%;
+            height: 100%;
+        }
+        .inner li {
+            list-style: none;
+            float: left;
+        }
+        .prev, .next{
+            width: 30px;
+            height: 350px;
+            background: #f0f2f5;
+            cursor: pointer;
+            position: absolute;
+            left: -35px;
+            top: 0;
+        }
+        .next{
+            left: 1075px;
+        }
+        .none{
+            display: none;
+        }
+        .pic1{
+            background-color: #eee;
+        }
+        .pic2{
+            background-color: #a87f6c;
+        }
+        .pic3{
+            background-color: #ffe9a2;
+        }
+        .pic4{
+            background-color: #43a12f;
+        }
+        .pic5{
+            background-color: #6092c4;
+        }
+        .pic6{
+            background-color: #5a535f;
+        }
+        .pic7{
+            background-color: #a860db;
+        }
+        .col-left{
+            width: 360px;
+            height: 345px;
+            float: left;
+            border: 2px solid #f60;
+        }
+        .col-right{
+            float: left;
+            height: 350px;
+            width: 706px;
+        }
+        .col{
+            width: 230px;
+            height: 172.5px;
+        }
+        .col-1, .col-2, .col-3,.col-4, .col-5, .col-6{
+            float: left;
+            margin-left: 5px;
+        }
+        .col-4, .col-5, .col-6{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="ImgSlider">
+    <div class="outer">
+        <div class="inner clearfix" data-index='0'>
+            <li>
+                <div class="imgWrapper">
+                    <div class="pic1 col-left"></div>
+                    <div class="col-right">
+                        <div class="col-rTop">
+                            <div class="pic2 col col-1"></div>
+                            <div class="pic3 col col-2"></div>
+                            <div class="pic4 col col-3"></div>
+                        </di>
+                        <div class="col-rBot">
+                            <div class="pic5 col col-4"></div>
+                            <div class="pic6 col col-5"></div>
+                            <div class="pic7 col col-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="imgWrapper  ">
+                    <img src="http://pic4.40017.cn/line/admin/2016/04/13/11/4fSW3v_640x340_00.jpg">
+                </div>
+            </li>
+            <li>
+                <div class="imgWrapper">
+                    <img src="http://pic4.40017.cn/line/admin/2016/04/13/11/SSdCQW_640x340_00.jpg">
+                </div>
+            </li>
+            <li>
+                <div class="imgWrapper">
+                    <img src="http://pic4.40017.cn/line/admin/2016/04/13/11/x1w1Bm_640x340_00.jpg">
+                </div>
+            </li>
+            <li>
+                <div class="imgWrapper">
+                    <img src="http://pic4.40017.cn/line/admin/2016/04/13/11/SSdCQW_640x340_00.jpg">
+                </div>
+            </li>
+            <li>
+                <div class="imgWrapper">
+                    <img src="http://pic4.40017.cn/line/admin/2016/04/13/11/x1w1Bm_640x340_00.jpg">
+                </div>
+            </li>
+        </div>
+    </div>
+    <div class="prev"></div>
+    <div class="next"></div>
+</div>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+    var index = {};
+    var $width = 1070;
+    index = {
+        init: function(){
+            this.initInnerWidth();
+            this.initEvent();
+        },
+        initInnerWidth: function(){
+            var len = $(".inner").find("li").length;
+            $(".inner").css({'width': len * $width + 'px'});
+        },
+        initEvent: function(){
+            var $prev = $(".prev"),
+                $next = $(".next"),
+                preTimes = 0,
+                nextTimes = 0;
+            $prev.on("click",function(){
+                $(".next").removeClass("none");
+                if($(".inner").attr("data-index") > 0){
+                    $(".inner").attr("data-index", parseInt($(".inner").attr("data-index")) - 1);
+                    --preTimes;
+                    ++nextTimes;
+                    $(".inner").stop(true,false).animate({left: nextTimes * $width+ 'px'});
+                    if($(".inner").attr("data-index") == 0){
+                        $(".prev").addClass("none");
+                    }
+                }else{
+                    $(".prev").addClass("none");
+                }
+            });
+            $next.on("click",function(){
+                $(".prev").removeClass("none");
+                var len = $(".inner").find("li").length - 1;
+                if($(".inner").attr("data-index") < len){
+                    $(".inner").attr("data-index",parseInt($(".inner").attr("data-index")) + 1);
+                    ++preTimes;
+                    --nextTimes;
+                    $(".inner").stop(true,false).animate({'left': -$width * preTimes + 'px'});
+                    if($(".inner").attr("data-index") == len){
+                        $(".next").addClass("none");
+                    }
+                }else{
+                    $(".next").addClass("none");
+                }
+            });
+        }
+    }
+    index.init();
+</script>
+</body>
+</html>

@@ -41,8 +41,8 @@ gulp.task('scripts', function() {
 //使用connect启动一个Web服务器
 gulp.task('connect', function () {
   connect.server({
-    root: './',
-    ip:'10.101.42.17',
+    root: './build/html',
+    ip:'10.101.62.65',
     port: '8081', //可以修改启动端口号
     livereload: true,
     open: true
@@ -58,8 +58,8 @@ gulp.task('webserver', function() {
 });
 
 gulp.task('html', function () {
-    gulp.watch('build/html/*.html',function(){
-        gulp.src('build/html/*.html')
+    gulp.watch('build/html/*/*.html',function(){
+        gulp.src('build/html/*/*.html')
             .pipe(connect.reload());
     })
 
