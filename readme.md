@@ -15,5 +15,3 @@ Some demos
 (移动端)
 ##es6 es7
 ##react  Native
-
-##由于机票列表改动较大，今天的目标是把模板全部拼好。
