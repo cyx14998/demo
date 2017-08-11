@@ -41,7 +41,7 @@ gulp.task('scripts', function() {
 //使用connect启动一个Web服务器
 gulp.task('connect', function () {
   connect.server({
-    root: './build/html',
+    root: './build',
     ip:'10.101.62.65',
     port: '8081', //可以修改启动端口号
     livereload: true,
