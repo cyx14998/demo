@@ -83,7 +83,7 @@ gulp.task('html', function () {
 });
 
 //dev模块
-gulp.task('dev', ['less', 'html', 'script','connect', 'webserver']);
+gulp.task('dev', ['less', 'html', 'scripts','connect', 'webserver']);
 //默认模块
 gulp.task('default', ['scripts-build','less-build','html-build']);
 
