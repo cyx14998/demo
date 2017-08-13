@@ -11,8 +11,6 @@ var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
 var webserver = require('gulp-webserver');
 var fs = require('fs');
-var bytediff = require('gulp-bytediff');
-var browserSync = require("browser-sync").create(); //这个 好像不太好用
 var outpath = 'public/assets';
 
 //监听less模块，模块名自定
