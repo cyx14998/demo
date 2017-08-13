@@ -1,0 +1,1 @@
+var index={init:function(){seajs.use("citySelect",function(){var n;$("#a").on("click",function(){(n=n||$.citySelect({title:"选择城市",btnPosition:"top",selectFn:function(n){console.log(n)}})).open()})})}};index.init();
