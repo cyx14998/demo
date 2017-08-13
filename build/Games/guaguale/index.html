@@ -55,7 +55,7 @@
                 posX = touch.clientX - l,
                 posY = touch.clientY - t;
             ctx.beginPath();
-            ctx.arc(posX, posY, 15, 0, Math.PI * 2, 0);
+            ctx.arc(posX, posY, 30, 0, Math.PI * 2, 0);
             ctx.fill();
         };
         var endFunc = function(e){
@@ -66,7 +66,7 @@
                     scrapeNum++;
                 }
             }
-            if(scrapeNum > area * 0.6){
+            if(scrapeNum > area * 0.5){
                 ctx.clearRect(0, 0, w, h);
                 canvas.removeEventListener('touchmove', moveFunc, false);
                 canvas.removeEventListener('touchend', endFunc, false);

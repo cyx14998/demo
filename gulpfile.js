@@ -3,7 +3,6 @@
 var gulp = require('gulp'), //本地安装gulp所用到的地方
     less = require('gulp-less');
     // 引入组件
-var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
@@ -41,7 +40,7 @@ gulp.task('scripts', function() {
 //使用connect启动一个Web服务器
 gulp.task('connect', function () {
   connect.server({
-    root: './build',
+    root: './',
     ip:'10.101.62.65',
     port: '8081', //可以修改启动端口号
     livereload: true,

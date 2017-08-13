@@ -1,0 +1,121 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="640" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="cleartype" content="on" />
+    <meta content="telephone =no" name="format-detection" />
+    <meta name="viewport" id="viewport" content="width=device-width,target-densitydpi=device-dpi, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
+    <title>刮刮卡</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <script src="../util/jquery.min.js" type="text/javascript"></script>
+    <script src="../util/jquery.blockUI.js" type="text/javascript"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="../util/base.js"></script>
+    <script src="../util/baseConfig.js"></script>
+    <style type="text/css">
+        body {
+            background-color: rgb(144, 21, 13);
+            margin: 0;
+            padding: 0;
+            font-family: Microsoft YaHei;
+            color: White;
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 30px;
+            color: rgb(255, 196, 4);
+            font-family: SimHei;
+            margin-bottom: 20px;
+        }
+
+        .mainScratch {
+            background: url(images/Scratch/b1.jpg) no-repeat center top;
+            background-size: 100%;
+            /*height:610px;*/
+            width: 100%;
+            /* padding-top:465px;*/
+        }
+
+        .mainScratch .ggl {
+            background-color: rgb(144, 21, 13);
+            width: 69%;
+            height: 75px;
+        }
+
+        .mainScratch .txt {
+            width: 80%;
+            margin: 100px auto 0 auto;
+        }
+
+        .mainScratch .explain {
+            font-size: 22px;
+            margin: 10px 0;
+            text-indent: 2em;
+            line-height: 36px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainScratch">
+        <div style="height:465px;width:100%"></div>
+        <div class="ggl" id="wScratchPad3"></div>
+        <div class="txt">
+            <h3>温馨提示：</h3>
+            <p class="explain">疯狂刮刮卡！刮开覆盖膜，巨额大奖等着你！刮出开心！刮出惊喜！</p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            var data = getAwardsData();
+            //data =
+            var num = data[Math.floor(Math.random() * data.length)];
+            if (num > 4) num = 4;
+            var i = 0;
+            $("#wScratchPad3").wScratchPad({
+                cursor: '',
+                image: 'images/Scratch/' + num + '.png',
+                width: window.screen.width,
+                height: 75,
+                realtimePercent: true, //You must add this attribute, or can not trigger the binding events
+                scratchMove: function (e, percent) {
+                    if (percent > 50) {
+                        this.clear();
+                    }
+                    if (percent == 100 && i == 0) {
+                        i++;
+                        var reward_code = "";
+                        switch (num) {
+                            case 0:
+                            case 4:
+                                reward_code = "4";
+                                break;
+                            case 1:
+                                reward_code = "1";
+                                break;
+                            case 2:
+                                reward_code = "2";
+                                break;
+                            case 3:
+                                reward_code = "3";
+                                break;
+                        }
+                        submitGameResult(reward_code);
+                    }
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
