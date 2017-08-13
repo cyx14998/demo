@@ -1,56 +1,60 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no" name="viewport">
     <title>Scrape</title>
     <style>
-		*{
-			margin: 0;
-			padding: 0;
-		}
-		body{
-			position: relative;
-			background: #eee;
-		}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+            background: #eee;
+        }
+
         #myCanvas {
             background-repeat: no-repeat;
             background-position: center;
             background-size: 200px 200px;
-			position: absolute;
-			left: 50%;
-			margin-top: 50px;
-			margin-left: -140px;
+            position: absolute;
+            left: 50%;
+            margin-top: 50px;
+            margin-left: -140px;
         }
     </style>
 </head>
+
 <body>
     <canvas id="myCanvas" width=280 height=160></canvas>
     <script>
         var canvas = document.getElementById('myCanvas'),
             ctx = canvas.getContext('2d'),
             w = canvas.width;
-            h = canvas.height;
-            area = w * h;
-            l = canvas.offsetLeft;
-            t = canvas.offsetTop,
+        h = canvas.height;
+        area = w * h;
+        l = canvas.offsetLeft;
+        t = canvas.offsetTop,
             img = new Image();
 
-        var randomImg = function(){
+        var randomImg = function () {
             var random = Math.random();
-            if(random < 0.4){
+            if (random < 0.4) {
                 img.src = './s_title.png';
-            }else if(random > 0.6){
+            } else if (random > 0.6) {
                 img.src = './s_bd.jpg';
-            }else{
+            } else {
                 img.src = './zj.png';
             }
         };
-        var bindEvent = function(){
+        var bindEvent = function () {
             canvas.addEventListener('touchmove', moveFunc, false);
             canvas.addEventListener('touchend', endFunc, false);
         };
-        var moveFunc = function(e){
+        var moveFunc = function (e) {
             var touch = e.touches[0],
                 posX = touch.clientX - l,
                 posY = touch.clientY - t;
@@ -58,30 +62,31 @@
             ctx.arc(posX, posY, 30, 0, Math.PI * 2, 0);
             ctx.fill();
         };
-        var endFunc = function(e){
+        var endFunc = function (e) {
             var data = ctx.getImageData(0, 0, w, h).data,
                 scrapeNum = 0;
-            for(var i = 3, len = data.length; i < len; i += 4){
-                if(data[i] === 0){
+            for (var i = 3, len = data.length; i < len; i += 4) {
+                if (data[i] === 0) {
                     scrapeNum++;
                 }
             }
-            if(scrapeNum > area * 0.5){
+            if (scrapeNum > area * 0.5) {
                 ctx.clearRect(0, 0, w, h);
                 canvas.removeEventListener('touchmove', moveFunc, false);
                 canvas.removeEventListener('touchend', endFunc, false);
             }
         }
-        var init = (function(){
+        var init = (function () {
             ctx.fillStyle = "#ccc";
             ctx.fillRect(0, 0, w, h);
-            randomImg();            
-            img.addEventListener('load', function(){
-                canvas.style.backgroundImage = 'url(' + img.src +')';
+            randomImg();
+            img.addEventListener('load', function () {
+                canvas.style.backgroundImage = 'url(' + img.src + ')';
                 ctx.globalCompositeOperation = 'destination-out';
                 bindEvent();
             });
         })();
     </script>
 </body>
+
 </html>

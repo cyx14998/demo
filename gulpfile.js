@@ -13,6 +13,7 @@ var webserver = require('gulp-webserver');
 var fs = require('fs');
 var bytediff = require('gulp-bytediff');
 var browserSync = require("browser-sync").create();//这个 好像不太好用
+var outpath = 'public/assets';
 
 //监听less模块，模块名自定
 gulp.task('less',function(){
@@ -27,11 +28,11 @@ gulp.task('less',function(){
 });
 //监听js文件、合并、压缩
 gulp.task('scripts', function() {
-    gulp.watch('build/js/*/*.js',function(){
-        gulp.src('build/js/*/*.js')
+    gulp.watch('build/js/**/*.js',function(){
+        return gulp.src('build/js/**/*.js')
             //.pipe(concat('all.js'))  //文件合并
             .pipe(uglify())  //文件压缩
-            .pipe(gulp.dest('build/dist')) //文件生成后的位置
+            .pipe(gulp.dest(outpath + '/js')) //文件生成后的位置
             //.pipe(rename('all.min.js')) //文件重命名
             .pipe(connect.reload());
     })
@@ -43,8 +44,7 @@ gulp.task('connect', function () {
     root: './',
     ip:'10.101.62.65',
     port: '8081', //可以修改启动端口号
-    livereload: true,
-    open: true
+    livereload: true
   });
 });
 
