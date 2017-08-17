@@ -34,9 +34,9 @@
             <div class="game-bg"></div>
         </div>
         <div class="game-answer" id="J_answer"></div>
-        <div class="game-help">
+        <!-- <div class="game-help">
             <div class="ui-btn J_share_h">向朋友圈求助</div>
-        </div>
+        </div> -->
     </div>
 </div>
 <div class="section" id="J_game_end">
@@ -44,23 +44,23 @@
         <p>哟喂，你认出了<span class="game-res-num" id="J_fruits_num"></span>种水果，</p>
         <p style="font-size:22px;">惊动了水果学界</p>
         <div><div class="game-res-share ui-btn" onClick="playagain();">再玩一次</div></div>
-		<div><div class="game-res-share ui-btn" onClick="dp_share();">炫耀我的战绩</div></div>
-        <div class="game-res-arrow"></div>
+		<!-- <div><div class="game-res-share ui-btn" onClick="dp_share();">炫耀我的战绩</div></div> -->
+        <!-- <div class="game-res-arrow"></div> -->
     </div>
-    <div class="game-res-gz">
+    <!-- <div class="game-res-gz">
         <p>离“满脸羞涩的花姑娘”还有最后一<br />步，赶快去抢！</p>
         <div><a href="#" onClick="clickMore();" class="game-res-gz-btn ui-btn">抢花姑娘</a></div>
-    </div>
+    </div> -->
 </div>
 <footer id="J_footer">
-    <a href="#" onClick="clickMore();">关注空中传媒</a>
+    <a href="#" onClick="clickMore();">关注逸享优食</a>
 </footer>
 
-<div class="share-popup" id="J_share_popup" style="z-index:98;"></div>
+<!-- <div class="share-popup" id="J_share_popup" style="z-index:98;"></div>
 <div class="share-popup-tips" id="J_share_popup_t" style="z-index:99;">
     <i></i>
     <span id="J_share_cont">分享到朋友圈</span>
-</div>
+</div> -->
 
 <script type="text/javascript" src="js/zepto.min.js"></script>
 <!--和后台交互  -->
@@ -104,55 +104,55 @@
         var guanzhuurl ="http://t.cn/RPtNrve";
         var share_img = "http://file1.wisetravel.cn/file/games/fruits/images/share_icon.png";
        
-        $("#J_replay").on("tap", function(){
-            game.start_game();
+        // $("#J_replay").on("tap", function(){
+        //     game.start_game();
 
-            $("#J_game_status").find("span").removeClass("stop");
+        //     $("#J_game_status").find("span").removeClass("stop");
 
-            $("#J_game_status").attr("data-stop", 0).html("<span>暂停</span>");;
-        });
+        //     $("#J_game_status").attr("data-stop", 0).html("<span>暂停</span>");;
+        // });
 
-        $("#J_continue_game").on("tap", function(){
-            game.continue_game();
+        // $("#J_continue_game").on("tap", function(){
+        //     game.continue_game();
 
-            $("#J_game_status").attr("data-stop", 0).html("<span>暂停</span>");
-        });
+        //     $("#J_game_status").attr("data-stop", 0).html("<span>暂停</span>");
+        // });
 
-        $("#J_game_status").on("tap", function(){
-            var is_stop = $(this).attr("data-stop");
-            if(is_stop == 1){
-                game.continue_game();
+        // $("#J_game_status").on("tap", function(){
+        //     var is_stop = $(this).attr("data-stop");
+        //     if(is_stop == 1){
+        //         game.continue_game();
 
-                $(this).attr("data-stop", 0).html("<span>暂停</span>");
-            }else{
-                game.stop_game();
+        //         $(this).attr("data-stop", 0).html("<span>暂停</span>");
+        //     }else{
+        //         game.stop_game();
 
-                $(this).attr("data-stop", 1).html("<span class='stop'>继续</span>");
-            }
+        //         $(this).attr("data-stop", 1).html("<span class='stop'>继续</span>");
+        //     }
             
-        });
+        // });
 
-        $("#J_skip_share").on("tap", function(){
-            $("#J_share_popup").show();
-            $("#J_share_popup_t").show();
-        });
+        // $("#J_skip_share").on("tap", function(){
+        //     $("#J_share_popup").show();
+        //     $("#J_share_popup_t").show();
+        // });
 
-        $(".J_share_h").on("tap", function(){
-            $("#J_share_popup").show();
-            $("#J_share_popup_t").show();
-            $("#J_share_cont").html("不认识它？<br />向朋友求助");
+        // $(".J_share_h").on("tap", function(){
+        //     $("#J_share_popup").show();
+        //     $("#J_share_popup_t").show();
+        //     $("#J_share_cont").html("不认识它？<br />向朋友求助");
 
-            game.stop_game();
-        });
+        //     game.stop_game();
+        // });
 
-        $("#J_share_popup").on("tap", function(){
-            $(this).hide();
-            $("#J_share_popup_t").hide();
-        });
-        $("#J_share_popup_t").on("tap", function(){
-            $(this).hide();
-            $("#J_share_popup").hide();
-        });
+        // $("#J_share_popup").on("tap", function(){
+        //     $(this).hide();
+        //     $("#J_share_popup_t").hide();
+        // });
+        // $("#J_share_popup_t").on("tap", function(){
+        //     $(this).hide();
+        //     $("#J_share_popup").hide();
+        // });
 
         var game = {
             question_list : [],
@@ -185,7 +185,7 @@
                 //定时，正确答案
                 setTimeout(function(){
                     gameOver(game.right_num);
-                },10000);
+                },60000);
                 share_type = "游戏求助好友分享";
                 share_type_p = "游戏求助朋友圈分享";
 
@@ -379,7 +379,23 @@
 		$('#J_game_end').show();
         $("#J_fruits_num").html(game_num);
         //提交信息给后台
-        submitGameResult(game_num);
+        if (WeiAppConfig && WeiAppConfig.AwardList && WeiAppConfig.AwardList.length) {
+            var diffCoeff = 0;
+            var awardCode = '';
+            WeiAppConfig
+                .AwardList
+                .map(function (item, index) {
+                    if (item.DiffCoeff > diffCoeff) {
+                        if (game_num * 2.5 > item.DiffCoeff) {
+                            diffCoeff = item.DiffCoeff;
+                            awardCode = item.ReturnCode;
+                        }
+                    }
+                });
+            if(WeiAppConfig.StatusCode == 1){
+                submitGameResult(awardCode);
+            }
+        }
 		var share_desc;
         if(game_num <= 10){
             $("#J_fruits_nick").html("哟喂，你认出了"+ game_num +"种水果，惊动了水果学界！");
@@ -400,7 +416,7 @@
 		dp_submitScore(game_num,share_desc);
 	}
 	function playagain(){
-		window.location.href=window.location.href;
+		window.location.reload();
 	}
 </script>
 <script language=javascript>

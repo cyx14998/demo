@@ -1,14 +1,14 @@
 var viewport = document.getElementById("viewport");
 var viewPortScale = 1 / window.devicePixelRatio;
-var viewPortdpi = 640 / $(window).width() * window.devicePixelRatio * 160;
+// var viewPortdpi = 640 / $(window).width() * window.devicePixelRatio * 160;
 $(document).ready(function () {
-    if ($(window).width() <= 360) {
+    if ($(window).width() < 320) {
         //viewport.content = "width=device-width,target-densitydpi=" + viewPortdpi + ",initial-scale=" + viewPortScale + ",minimum-scale=" + viewPortScale + ",maximum-scale=" + viewPortScale + ",user-scalable=no";
-        viewport.content = "width=device-width,target-densitydpi=" + viewPortdpi + ",initial-scale=" + viewPortScale + ",minimum-scale=0.57,maximum-scale=" + viewPortScale + ",user-scalable=no";
+        viewport.content = "width=device-width,initial-scale=" + viewPortScale + ",minimum-scale=0.57,maximum-scale=" + viewPortScale + ",user-scalable=no";
     } else {
         //var ratio = window.screen.width / 640;
         var ratio = 1;
-        viewport.content = "width=device-width,target-densitydpi=" + viewPortdpi + ",initial-scale=" + ratio + ",minimum-scale=" + ratio + ",maximum-scale=" + ratio + ",user-scalable=no";
+        viewport.content = "width=device-width,initial-scale=" + ratio + ",minimum-scale=" + ratio + ",maximum-scale=" + ratio + ",user-scalable=no";
     }
 })
 //sessionStorage缓存
@@ -133,7 +133,7 @@ function createBlockDialog(content, timeout, modal, istrue) {
             top: istrue ? '16%' : '48%',
             cursor: '',
             'font-size': '24px',
-            backgroundColor: istrue ? '#fff' : '#f7282d',
+            backgroundColor: istrue ? '#fff' : '#cde3a7',
             'font-family': 'Microsoft YaHei',
             'box-shadow': '2px 2px 2px #292929',
             'border-radius': '5px',

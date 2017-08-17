@@ -2,7 +2,7 @@
 <html lang="en">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="viewport" id="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="yes" name="apple-touch-fullscreen">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
@@ -45,9 +45,21 @@
             第&nbsp;<strong id="level">?</strong>&nbsp;/&nbsp;<span id="levels">?</span> 关，
             本关限时<span id="time">?</span>秒
         </p>
+        <!-- 下面是活动还没开始的一些提示 -->
+        <div class="mask none"></div>
+        <div class="no-openMsg none">
+            <div class="masgText">
+                <p class="warnMsg"></p>
+                <p class="closeMsg">轻触关闭该信息</p>
+            </div>
+        </div>
     </div>
     <canvas id="canvas" style="display: none" width="300" height="300"></canvas>
     <script type="text/javascript" src="zepto.js"></script>
+    <script type="text/javascript" src="../util/base.js"></script>
+    <script src="../util/jquery.min.js"></script>  
+    <script src="../util/baseConfig.js"></script>  
+    <script src="../util/jquery.blockUI.js"></script>  
     <script type="text/javascript">
         var doc = document;
         var canvas = doc.getElementById('canvas');
@@ -62,9 +74,10 @@
             isComplete: false,
             level: 0,
             levels: [
-                {time: "60.00", image: "shulan.jpg"},
-                {time: "40.00", image: "tuzi.jpg"},
-                {time: "30.00", image: "together.jpg"}
+                {time: "40.00", image: "shulan.jpg"},
+                {time: "30.00", image: "tuzi.jpg"},
+                {time: "20.00", image: "together.jpg"},
+                {time: "20.00", image: "together.jpg"}
             ],
             bind: function() {
                 //阻止手机上浏览器的弹性下拉。。。
@@ -134,9 +147,11 @@
                     $('#layer').hide();
                 });
                 $('#reset').on('tap', function() {
-                    App.resetData();
-                    App.countdown();
-                    App.randomImage(true);
+                    if(!$(this).prop('disabled')){
+                        App.resetData();
+                        App.countdown();
+                        App.randomImage(true);
+                    }
                 });
             },
             countdown: function() {
@@ -199,13 +214,17 @@
                         //App.isComplete = true;
                         window.clearInterval(App.timeHandle);
                         if (App.level >= App.levels.length-1) {
-                            alert("哇塞,你居然通关了,好棒!");
+                            var res_content = "<div><a href='javascript:void(0)' onclick='$.unblockUI()'>哇塞,你居然通关了,好棒!</a></div>";
+                            createBlockDialog(res_content, '', true);
+                            App.update();
                             App.destory();
                         } else {
                             if (confirm("恭喜过关,是否继续挑战?")) {
                                 App.level++;
                                 $('#layer').show();
                                 App.init();
+                            }else{
+                                App.update();
                             }
                         }
                     }, 300);
@@ -213,10 +232,28 @@
             },
             update: function() {
                 if (this.isComplete === false) {
-                    alert("时间到,游戏结束!");
-                    $('#layer').show();
-                    $('#start').html("再来一次");
-                    $('#reset').prop('disabled', true);
+                    if(WeiAppConfig && WeiAppConfig.AwardList && WeiAppConfig.AwardList.length){
+                        var diffCoeff = 0;
+                        var awardCode = '';
+                        WeiAppConfig
+                            .AwardList
+                            .map(function (item, index) {
+                                if (item.DiffCoeff > diffCoeff) {
+                                    if (App.level * (100/App.levels.length) >= item.DiffCoeff) {
+                                        diffCoeff = item.DiffCoeff;
+                                        awardCode = item.ReturnCode;
+                                    }
+                                }
+                            });
+                        if(WeiAppConfig.StatusCode == 1){
+                            submitGameResult(awardCode);
+                        }
+                        var res_content = "<div><a href='javascript:void(0)' onclick='$.unblockUI()'>时间到,游戏结束!</a></div>";
+                        createBlockDialog(res_content, '', true);
+                        $('#layer').show();
+                        $('#start').html("再来一次");
+                        $('#reset').prop('disabled', true);
+                    }
                 }
             },
             destory: function() {

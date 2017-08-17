@@ -39787,26 +39787,26 @@ GEMIOLI.Menu = function () {
             .play
             .dispatchEvent({type: "click"})
     });
-    a.shop = new GEMIOLI.Button(-120, -120, 241, 241, [66]);
-    a
-        .shop
-        .addChild(GEMIOLI.AtlasQuad.fromRect(-120, -120, 241, 241, "atlases/menu.atlas", "shop"));
-    a.shop.x = 600;
-    a.shop.y = -150;
-    a
-        .shop
-        .addEventListener("click", function (b) {
-            if (!a.showing/*|| GEMIOLI.Button.inFocus*/) {
-                return
-            }
-            GEMIOLI
-                .SoundLoader
-                .load("button")
-                .play();
-            GEMIOLI
-                .Shop
-                .show(false)
-        });
+    // a.shop = new GEMIOLI.Button(-120, -120, 241, 241, [66]);
+    // a
+    //     .shop
+    //     .addChild(GEMIOLI.AtlasQuad.fromRect(-120, -120, 241, 241, "atlases/menu.atlas", "shop"));
+    // a.shop.x = 600;
+    // a.shop.y = -150;
+    // a
+    //     .shop
+    //     .addEventListener("click", function (b) {
+    //         if (!a.showing/*|| GEMIOLI.Button.inFocus*/) {
+    //             return
+    //         }
+    //         GEMIOLI
+    //             .SoundLoader
+    //             .load("button")
+    //             .play();
+    //         GEMIOLI
+    //             .Shop
+    //             .show(false)
+    //     });
     a
         .bottom
         .addChild(a.shop);
@@ -40502,8 +40502,24 @@ GEMIOLI.Score.prototype.show = function () {
     var d = Math.floor(GEMIOLI.Play.distance / 200);
     
     //拿到结果
-    //提交信息给后台
-    submitGameResult(d);
+    if (WeiAppConfig && WeiAppConfig.AwardList && WeiAppConfig.AwardList.length) {
+        var diffCoeff = 0;
+        var awardCode = '';
+        WeiAppConfig
+            .AwardList
+            .map(function (item, index) {
+                if (item.DiffCoeff > diffCoeff) {
+                    if (d / 10 > item.DiffCoeff) {
+                        diffCoeff = item.DiffCoeff;
+                        awardCode = item.ReturnCode;
+                    }
+                }
+            });
+        //提交信息给后台
+        if(WeiAppConfig.StatusCode == 1){
+            submitGameResult(awardCode);
+        }
+    }
     if (d < 10000) 
         c.mainText.text = "雪人跑了" + d + "米\n\n";
     else 

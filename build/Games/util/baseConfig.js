@@ -1,4 +1,4 @@
-var SRUrl = "http://" + window.location.host;
+var SRUrl = "http://192.168.2.213/";
 var WeiAppConfig = {
     AccountID: "",
     CustID: "",
@@ -18,21 +18,43 @@ $(function () {
 function initGames() {
     WeiAppConfig.AccountID = getUrlParam("accid");   
     WeiAppConfig.CustID = getUrlParam("custid");
-    WeiAppConfig.OpenID = getUrlParam("openid");
+    WeiAppConfig.OpenID = getUrlParam("code");
     WeiAppConfig.CampaignID = getUrlParam("camid");
-    var apiurl = "AddScratchRewardInfo";
+    var apiurl = "";
     
     $.ajax({
-        url: "/api/WeiApp/GetCampaignInfoByID/" + WeiAppConfig.CampaignID,
+        url: SRUrl + "emapi/WeiAPPGame/GetCampaignInfoByID/" + WeiAppConfig.CampaignID,
         type: "get",
         dataType: "json",
         async: false,
         success: function (data) {            
-            if (data != null) {
-                WeiAppConfig.AwardList = data.AwardList;
-                WeiAppConfig.ApiUrl = SRUrl + data.ApiUrl;
-                WeiAppConfig.ConfigJson = data.ConfigJson;
+            if (data && data.result) {
+                WeiAppConfig.AwardList = data.result.AwardList;
+                WeiAppConfig.ApiUrl =  data.result.ApiUrl;
+                //StatusCode 活动的不同状态
+                WeiAppConfig.StatusCode = data.result.StatusCode;
+                WeiAppConfig.ConfigJson = data.result.ConfigJson;
                 WeiAppConfig.onInited();
+                if(data.result.StatusCode == 2){
+                    var pauseTime = parseInt(data.result.StartMsg) * 1000;
+                    var shtml = getWarnMess(pauseTime);
+                    WeiAppConfig.warninghtml = shtml;
+                }else if (data.result.StatusCode == 3){
+                    var pauseTime = parseInt(data.result.PauseMsg) * 1000;
+                    var shtml = getWarnMess(pauseTime);
+                    WeiAppConfig.warninghtml = shtml;
+                }else if (data.result.StatusCode == 4){
+                    WeiAppConfig.warninghtml = '活动已结束';
+                }
+                if(WeiAppConfig.warninghtml && WeiAppConfig.StatusCode != 1){
+                    $('.mask').removeClass('none');
+                    $('.no-openMsg').removeClass('none');
+                    $('.no-openMsg .warnMsg').html(WeiAppConfig.warninghtml);
+                    $(document).on('click touchend','.no-openMsg',function(){
+                        $('.mask').addClass('none');
+                        $('.no-openMsg').addClass('none');
+                    })
+                }
             }
         },
         error: function (data) {
@@ -40,7 +62,18 @@ function initGames() {
         }
     });  
 }
-
+//把时间（秒） 转换成天数
+function getWarnMess(pauseTime){
+    var days    = pauseTime / 1000 / 60 / 60 / 24;
+    var daysRound   = Math.floor(days);
+    var hours    = pauseTime/ 1000 / 60 / 60 - (24 * daysRound);
+    var hoursRound   = Math.floor(hours);
+    var minutes   = pauseTime / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+    var minutesRound  = Math.floor(minutes);
+    var seconds   = pauseTime/ 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+    var shtml = '还要' + ((daysRound > 0) ? (daysRound  + '天') : '') + ((hoursRound > 0) ? (hoursRound  + '时') : '')  + ((minutesRound > 0) ? (minutesRound  + '分') : '') + ((seconds > 0) ? (seconds  + '秒') : '') + '活动开始，敬请期待';
+    return shtml;
+}
 //获取奖励随机数组
 function getAwardsData() {
     var AwardsData = [1, 2, 3, 0, 1, 2, 3, 0, 1, 2];
@@ -110,22 +143,22 @@ function submitGameResult(reward_code) {
         url: WeiAppConfig.ApiUrl,
         data: {
             "OpenID": WeiAppConfig.OpenID,
-            "CustID": WeiAppConfig.CustID,
+            // "CustID": WeiAppConfig.CustID,
             "AwardCode": reward_code,
             "CampaignID": WeiAppConfig.CampaignID
             //"CampaignID": "00000000-0000-0000-0000-000000000011"
         },
         success: function (data) {
-            var obj = eval("(" + data + ")");
+            var obj = data;
             //  var content = "<div>" + tip_info + "</div>";
             //   content += "<div class='success_confirm'><a href='javascript:void(0)' onclick='$.unblockUI()'>确定</a></div>";
             //  var timeout = 1000;
             //  var modal = true;
             //    createBlockDialog(content, timeout, modal);
-            var res_content = "<div>" + obj.Message + "</div>";
+            var res_content = "<div>" + obj.result + "</div>";
             var message_code = obj.MessageCode;
             if (message_code == "1") {
-                res_content = "<div>" + obj.Message + "</div>";
+                res_content = "<div>" + obj.result + "</div>";
             }
             else if (message_code == "002") {
                 res_content = "<div>非活动时间</div>";
@@ -134,7 +167,7 @@ function submitGameResult(reward_code) {
                 res_content = "<div>请到菜单页注册会员或继续试玩</div>";
             }
             else {
-                res_content = "<div>" +obj.Message + "</div>";
+                res_content = "<div>" +obj.result + "</div>";
             }
 
             res_content += "<div class='success_confirm'><a href='javascript:void(0)' onclick='$.unblockUI()'>确定</a></div>";

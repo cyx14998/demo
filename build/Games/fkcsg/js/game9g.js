@@ -25,11 +25,11 @@ Game9G = function(gameid) {
 // 初始化
 Game9G.prototype.init = function() {
 	this.spid = this.utils.getParameter("spid");
-	this.homeurl = "http://mp.weixin.qq.com/s?__biz=MzI4MjA2MjE0MQ==&mid=246005295&idx=1&sn=490f8141976d607ba079d48f52a3fcd7#rd";
-	this.gzurl = "http://game.3gjj.cn/";
+	this.homeurl = "";
+	this.gzurl = "";
 	this.shareDomain = this.shareDomains[parseInt(Math.random() * this.shareDomains.length)];
 	this.shareData.imgurl = "http://file1.wisetravel.cn/file/games/fruits/images/share_icon.png";
-	this.shareData.link = "http://game.3gjj.cn/games/fkcsg/";
+	this.shareData.link = "";
 	switch (this.utils.getAppType()) {
 		case "wx":
 			this.app = new Game9GWx(this);
