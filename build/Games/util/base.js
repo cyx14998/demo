@@ -133,7 +133,7 @@ function createBlockDialog(content, timeout, modal, istrue) {
             top: istrue ? '16%' : '48%',
             cursor: '',
             'font-size': '24px',
-            backgroundColor: istrue ? '#fff' : '#cde3a7',
+            backgroundColor: istrue ? '#fff' : '#f7282d',
             'font-family': 'Microsoft YaHei',
             'box-shadow': '2px 2px 2px #292929',
             'border-radius': '5px',

@@ -18,49 +18,60 @@ $(function () {
 function initGames() {
     WeiAppConfig.AccountID = getUrlParam("accid");   
     WeiAppConfig.CustID = getUrlParam("custid");
-    WeiAppConfig.OpenID = getUrlParam("code");
+    // WeiAppConfig.OpenID = getUrlParam("code");
     WeiAppConfig.CampaignID = getUrlParam("camid");
     var apiurl = "";
-    
-    $.ajax({
-        url: SRUrl + "emapi/WeiAPPGame/GetCampaignInfoByID/" + WeiAppConfig.CampaignID,
-        type: "get",
-        dataType: "json",
-        async: false,
-        success: function (data) {            
-            if (data && data.result) {
-                WeiAppConfig.AwardList = data.result.AwardList;
-                WeiAppConfig.ApiUrl =  data.result.ApiUrl;
-                //StatusCode 活动的不同状态
-                WeiAppConfig.StatusCode = data.result.StatusCode;
-                WeiAppConfig.ConfigJson = data.result.ConfigJson;
-                WeiAppConfig.onInited();
-                if(data.result.StatusCode == 2){
-                    var pauseTime = parseInt(data.result.StartMsg) * 1000;
-                    var shtml = getWarnMess(pauseTime);
-                    WeiAppConfig.warninghtml = shtml;
-                }else if (data.result.StatusCode == 3){
-                    var pauseTime = parseInt(data.result.PauseMsg) * 1000;
-                    var shtml = getWarnMess(pauseTime);
-                    WeiAppConfig.warninghtml = shtml;
-                }else if (data.result.StatusCode == 4){
-                    WeiAppConfig.warninghtml = '活动已结束';
-                }
-                if(WeiAppConfig.warninghtml && WeiAppConfig.StatusCode != 1){
-                    $('.mask').removeClass('none');
-                    $('.no-openMsg').removeClass('none');
-                    $('.no-openMsg .warnMsg').html(WeiAppConfig.warninghtml);
-                    $(document).on('click touchend','.no-openMsg',function(){
-                        $('.mask').addClass('none');
-                        $('.no-openMsg').addClass('none');
-                    })
-                }
-            }
-        },
-        error: function (data) {
 
+    $.ajax({
+        type: "post",
+        url: '/api/user/getLoginUserInfo?code=' + getUrlParam("code"),
+        success: function (data) {
+            alert(JSON.parse(data).UserID)
+            WeiAppConfig.OpenID = JSON.parse(data).UserID;
+            $.ajax({
+                url: SRUrl + "emapi/WeiAPPGame/GetCampaignInfoByID/" + WeiAppConfig.CampaignID,
+                type: "get",
+                dataType: "json",
+                async: false,
+                success: function (data) {            
+                    if (data && data.result) {
+                        WeiAppConfig.AwardList = data.result.AwardList;
+                        WeiAppConfig.ApiUrl =  data.result.ApiUrl;
+                        //StatusCode 活动的不同状态
+                        WeiAppConfig.StatusCode = data.result.StatusCode;
+                        WeiAppConfig.ConfigJson = data.result.ConfigJson;
+                        WeiAppConfig.onInited();
+                        if(data.result.StatusCode == 2){
+                            var pauseTime = parseInt(data.result.StartMsg) * 1000;
+                            var shtml = getWarnMess(pauseTime);
+                            WeiAppConfig.warninghtml = shtml;
+                        }else if (data.result.StatusCode == 3){
+                            var pauseTime = parseInt(data.result.PauseMsg) * 1000;
+                            var shtml = getWarnMess(pauseTime);
+                            WeiAppConfig.warninghtml = shtml;
+                        }else if (data.result.StatusCode == 4){
+                            WeiAppConfig.warninghtml = '活动已结束';
+                        }
+                        if(WeiAppConfig.warninghtml && WeiAppConfig.StatusCode != 1){
+                            $('.mask').removeClass('none');
+                            $('.no-openMsg').removeClass('none');
+                            $('.no-openMsg .warnMsg').html(WeiAppConfig.warninghtml);
+                            $('body').on('click',function(){
+                                $('.mask').addClass('none');
+                                $('.no-openMsg').addClass('none');
+                            })
+                        }
+                    }
+                },
+                error: function (data) {
+
+                }
+            }); 
+        },
+        error: function () {
+            
         }
-    });  
+    });
 }
 //把时间（秒） 转换成天数
 function getWarnMess(pauseTime){
@@ -149,16 +160,16 @@ function submitGameResult(reward_code) {
             //"CampaignID": "00000000-0000-0000-0000-000000000011"
         },
         success: function (data) {
-            var obj = data;
+            var obj = eval("(" + data + ")");
             //  var content = "<div>" + tip_info + "</div>";
             //   content += "<div class='success_confirm'><a href='javascript:void(0)' onclick='$.unblockUI()'>确定</a></div>";
             //  var timeout = 1000;
             //  var modal = true;
             //    createBlockDialog(content, timeout, modal);
-            var res_content = "<div>" + obj.result + "</div>";
+            var res_content = "<div>" + obj.Message + "</div>";
             var message_code = obj.MessageCode;
             if (message_code == "1") {
-                res_content = "<div>" + obj.result + "</div>";
+                res_content = "<div>" + obj.Message + "</div>";
             }
             else if (message_code == "002") {
                 res_content = "<div>非活动时间</div>";
@@ -167,7 +178,7 @@ function submitGameResult(reward_code) {
                 res_content = "<div>请到菜单页注册会员或继续试玩</div>";
             }
             else {
-                res_content = "<div>" +obj.result + "</div>";
+                res_content = "<div>" +obj.Message + "</div>";
             }
 
             res_content += "<div class='success_confirm'><a href='javascript:void(0)' onclick='$.unblockUI()'>确定</a></div>";

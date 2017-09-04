@@ -19,7 +19,6 @@ gulp.task('less', function () {
         .watch('build/less/*/*.less', function () {
             gulp.src('build/less/*/*.less') //该任务针对的文件
                 .pipe(less()) //该任务调用的模块
-                .pipe(gulp.dest('build/css')) //将会在build/css下生成对应css
                 .pipe(minifyCss()) //对生成后的css进行压缩
                 .pipe(gulp.dest('build/css/min')) //在css/min下生成对应压缩文件
                 .pipe(connect.reload());
