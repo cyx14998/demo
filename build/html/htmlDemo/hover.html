@@ -1,59 +1,63 @@
 <!DOCTYPE html">
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
-<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-$(function(){
-    $(".adLink").hover(function(){
-        // $(".my_Link").click();
-        // var div = $(".adLink").offset();
-        // var myTop = div.top + $(".adLink").height()-2;
-        // $(".my_Link").css({top:myTop,left:div.left+5});
-        $(".my_Link").css({display:"block"});
-    },function(){
-        $(".my_Link").css({display:"none"});
-    });
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".adLink").hover(function () {
+                // $(".my_Link").click();
+                // var div = $(".adLink").offset();
+                // var myTop = div.top + $(".adLink").height()-2;
+                // $(".my_Link").css({top:myTop,left:div.left+5});
+                $(".my_Link").css({ display: "block" });
+            }, function () {
+                $(".my_Link").css({ display: "none" });
+            });
 
-    /*$(".adLink").mouseleave(function(event){
-            console.log('event.srcElement');
-            console.log(event.toElement);
-        if(event.toElement == $(".my_Link")) {
-            $(".my_Link").css({display:"block"});
-        }else{
-            $(".my_Link").css({display:"none"});
-        }
-    }); */
+            /*$(".adLink").mouseleave(function(event){
+                    console.log('event.srcElement');
+                    console.log(event.toElement);
+                if(event.toElement == $(".my_Link")) {
+                    $(".my_Link").css({display:"block"});
+                }else{
+                    $(".my_Link").css({display:"none"});
+                }
+            }); */
 
-    $(".my_Link").hover(function(e){
-        $(".my_Link").css({display:"block"});
-            console.log('document.activeElement');
-            console.log(document.activeElement);/*
+            $(".my_Link").hover(function (e) {
+                $(".my_Link").css({ display: "block" });
+                console.log('document.activeElement');
+                console.log(document.activeElement);/*
             console.log('e.srcElement');
             console.log(e.srcElement);*/
-            console.log('e.currentTarget');
-            console.log(e.currentTarget);
-    },function(){
-            $(".my_Link").css('display','none');
-    });
-});
-</script>
+                console.log('e.currentTarget');
+                console.log(e.currentTarget);
+            }, function () {
+                $(".my_Link").css('display', 'none');
+            });
+        });
+
+    </script>
 </head>
+
 <body>
-<div class="main">
-    <p>ssss</p>
-</div>
-<div class="adLink" id="adLink" style="background-color:blue; color: #fff; width: 200px;height: 50px; line-height:50px;text-align: center;">nav</div>
+    <div class="main">
+        <p>ssss</p>
+    </div>
+    <div class="adLink" id="adLink" style="background-color:blue; color: #fff; width: 200px;height: 50px; line-height:50px;text-align: center;">nav</div>
     <div class="my_Link" style="background-color:#999; width:200px; position:absolute;display: none ">
         <ul>
-            <li>首  页</li>
-            <li>新  闻</li>
-            <li>功  略</li>
-            <li>视  频</li>
-            <li>图  片</li>
-            <li>留  言</li>
+            <li>首 页</li>
+            <li>新 闻</li>
+            <li>功 略</li>
+            <li>视 频</li>
+            <li>图 片</li>
+            <li>留 言</li>
         </ul>
     </div>
 </body>
+
 </html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>SVG</title>
 </head>
 <style>
-    .wrapper{
+    .wrapper {
         width: 600px;
         height: 600px;
         margin-top: 200px;
@@ -13,7 +14,8 @@
         perspective: 3000;
         -webkit-perspective: 3000;
     }
-    .inner{
+
+    .inner {
         position: relative;
         margin: 0 auto;
         transform: rotateX(50deg) rotateY(30deg);
@@ -23,6 +25,7 @@
         width: 400px;
         height: 400px;
     }
+
     @keyframes rotate {
         0% {
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
@@ -32,6 +35,7 @@
             transform: rotateX(360deg) rotateY(720deg) rotateZ(1080deg);
         }
     }
+
     @-webkit-keyframes rotate {
         0% {
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
@@ -41,6 +45,7 @@
             transform: rotateX(360deg) rotateY(720deg) rotateZ(1080deg);
         }
     }
+
     @-moz-keyframes rotate {
         0% {
             transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
@@ -50,50 +55,64 @@
             transform: rotateX(360deg) rotateY(720deg) rotateZ(1080deg);
         }
     }
-    .inner>div{
+
+    .inner>div {
         position: absolute;
         transition: 0.5s linear;
     }
-    .num1{
+
+    .num1 {
         transform: rotateY(90deg) translateZ(-20px) translateY(130px) translateX(70px);
     }
-    .num2{
+
+    .num2 {
         transform: translateX(140px) translateZ(-90px) translateY(130px);
     }
-    .num3{
+
+    .num3 {
         transform: translateX(280px) rotateY(-90deg) translateZ(-20px) translateX(-70px) translateY(130px);
         transform-origin: left;
     }
-    .num4{
+
+    .num4 {
         transform: translateX(140px) translateZ(90px) translateY(130px);
     }
-    .num5{
+
+    .num5 {
         transform: translateZ(-70px) translateX(140px) translateY(-160px) rotateX(-90deg) translateZ(130px);
         transform-origin: bottom;
     }
-    .num6{
+
+    .num6 {
         transform: translateZ(-70px) translateX(140px) translateY(160px) rotateX(90deg) translateZ(-130px);
         transform-origin: top;
     }
-    .inner:hover .num1{
+
+    .inner:hover .num1 {
         transform: rotateY(90deg) translateZ(-100px) translateX(70px) translateY(130px);
     }
-    .inner:hover .num2{
+
+    .inner:hover .num2 {
         transform: translateX(140px) translateZ(-170px) translateY(130px);
     }
-    .inner:hover .num3{
+
+    .inner:hover .num3 {
         transform: translateX(280px) rotateY(-90deg) translateZ(-60px) translateX(-70px) translateY(130px);
     }
-    .inner:hover .num4{
+
+    .inner:hover .num4 {
         transform: translateX(140px) translateZ(170px) translateY(130px);
     }
-    .inner:hover .num5{
+
+    .inner:hover .num5 {
         transform: translateZ(-70px) translateX(140px) translateY(-160px) rotateX(-90deg) translateZ(50px);
     }
-    .inner:hover .num6{
+
+    .inner:hover .num6 {
         transform: translateZ(-70px) translateX(140px) translateY(160px) rotateX(90deg) translateZ(-210px);
     }
 </style>
+
 <body>
     <div class="wrapper">
         <div class="inner clearfix">
@@ -130,4 +149,5 @@
         </div>
     </div>
 </body>
+
 </html>

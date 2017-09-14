@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -12,19 +13,20 @@
         overflow: auto;
     }
 </style>
+
 <body>
     <div id="test" class="test">
         <img src="images/9.jpg">
     </div>
     <script src="js/jquery-1.9.1.min.js"></script>
     <script>
-        $.fn.scrollUnique = function() {
-            return $(this).each(function() {
+        $.fn.scrollUnique = function () {
+            return $(this).each(function () {
                 var eventType = 'mousewheel';
                 if (document.mozHidden !== undefined) {
                     eventType = 'DOMMouseScroll';
                 }
-                $(this).on(eventType, function(event) {
+                $(this).on(eventType, function (event) {
                     // 一些数据
                     var scrollTop = this.scrollTop,
                         scrollHeight = this.scrollHeight,
@@ -34,7 +36,7 @@
 
                     if ((delta > 0 && scrollTop <= delta) || (delta < 0 && scrollHeight - height - scrollTop <= -1 * delta)) {
                         // IE浏览器下滚动会跨越边界直接影响父级滚动，因此，临界时候手动边界滚动定位
-                        this.scrollTop = delta > 0? 0: scrollHeight;
+                        this.scrollTop = delta > 0 ? 0 : scrollHeight;
                         // 向上滚 || 向下滚
                         event.preventDefault();
                     }
@@ -50,4 +52,5 @@
         */
     </script>
 </body>
+
 </html>

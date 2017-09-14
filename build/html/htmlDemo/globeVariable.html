@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
-<input onkeyup="value=value.replace(/[ -~]/g,'')">
-<script type="text/javascript">
-    var a = 0;
-    var globe = {};
-    globe = {
-        init: function(){
-            var a =this.change();
-            console.log(a);
-        },
-        change: function(){
-            return a = 1;
+    <input onkeyup="value=value.replace(/[ -~]/g,'')">
+    <script type="text/javascript">
+        var a = 0;
+        var globe = {};
+        globe = {
+            init: function () {
+                var a = this.change();
+                console.log(a);
+            },
+            change: function () {
+                return a = 1;
+            }
         }
-    }
-    globe.init();
+        globe.init();
 
-
-</script>
+    </script>
 </body>
+
 </html>

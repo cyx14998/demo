@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>判断设备型号</title>
 </head>
+
 <body>
     <script>
         var isAndroid = (/android/gi).test(navigator.appVersion),
             isIDevice = (/iphone|ipad/gi).test(navigator.appVersion);
-        if(isAndroid){
+        if (isAndroid) {
             alert("android");
         }
-        if(isIDevice){
+        if (isIDevice) {
             alert("apple");
         }
     </script>
 </body>
+
 </html>

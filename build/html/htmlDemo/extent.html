@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>extent</title>
     <script src="../js/jquery-1.9.1.min.js"></script>
 </head>
+
 <body>
     <div class=""></div>
 </body>
@@ -18,7 +20,7 @@
     var param2 = {
         father: 'mm'
     };
-    var ret = $.extend({},param,param2);
+    var ret = $.extend({}, param, param2);
     var ret2 = encodeURIComponent(JSON.stringify(ret));
     console.log(ret);
     var keyData = 'keyData={"AuditNotPassReason":"","MaterialStatusValue":"0","PreSendSignDate":"2016-08-09","TransactorId":"3792016"}';
@@ -34,5 +36,7 @@
             isrun = false;
         }
     });
+
 </script>
+
 </html>

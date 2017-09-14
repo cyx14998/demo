@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
     <meta charset="UTF-8">
     <title>prototype</title>
 </head>
+
 <body>
     <script type="text/javascript">
-        var person = function(){
+        var person = function () {
             this.name = [];
         };
         person.prototype = {
-            getNameLen: function(){
+            getNameLen: function () {
                 console.log(this.name);
             },
-            setName: function(name){
+            setName: function (name) {
                 this.name.push(name);
             }
         };
@@ -24,7 +26,7 @@
         var p2 = new person();
         p2.setName('cyx');
         p2.getNameLen();
-
     </script>
 </body>
+
 </html>

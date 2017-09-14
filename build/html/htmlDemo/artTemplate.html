@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>test</title>
     <style>
-        i{
+        i {
             color: red;
             font-style: normal;
             font-weight: bold;
@@ -12,31 +13,34 @@
         }
     </style>
 </head>
+
 <body>
-<script src="js/artTemplate.js"></script>
-<div id="content">
-    <script id="test" type="text/html">
-        <h1>{{title}}</h1>
-        <ul>
-            {{each list as value i}}
-            <li>第<i> {{i + 1}} </i>个标签：{{value}}</li>
-            {{/each}}
-        </ul>
-        <div class="{{className}}">今天花费<i> {{pay}} </i>元</div>
-        <div class="{{className}}">以后每天花费<i> {{apay}} </i>元</div>
-    </script>
-</div>
+    <script src="js/artTemplate.js"></script>
+    <div id="content">
+        <script id="test" type="text/html">
+            <h1>{{title}}</h1>
+            <ul>
+                {{each list as value i}}
+                <li>第<i> {{i + 1}} </i>个标签：{{value}}</li>
+                {{/each}}
+            </ul>
+            <div class="{{className}}">今天花费<i> {{pay}} </i>元</div>
+            <div class="{{className}}">以后每天花费<i> {{apay}} </i>元</div>
+        </script>
+    </div>
     <select id="J_matriSel" value="审核不通过"><option value="0">请选择材料状态</option><option value="1" selected = "selected">审核不通过</option><option value="2">通过</option></select>
-<script>
-    var data = {
-        title: '标签',
-        pay: '100',
-        apay: '50',
-        className: 'pay',
-        list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他','篮球','排球','游泳']
-    };
-    var html = template('test', data);
-    document.getElementById('content').innerHTML = html;
-</script>
+    <script>
+        var data = {
+            title: '标签',
+            pay: '100',
+            apay: '50',
+            className: 'pay',
+            list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他', '篮球', '排球', '游泳']
+        };
+        var html = template('test', data);
+        document.getElementById('content').innerHTML = html;
+
+    </script>
 </body>
+
 </html>
